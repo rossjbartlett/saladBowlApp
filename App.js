@@ -2,15 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack'
+import configureStore from './src/redux';
+import { Provider } from 'react-redux';
 
 import Home from './src/Home';
 import WriteCards from './src/WriteCards';
+import StartTurn from './src/StartTurn';
 import Guessing from './src/Guessing';
+import FinishedBowl from './src/FinishedBowl';
 
+const store = configureStore()
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    )
   }
 }
 
@@ -22,9 +31,15 @@ const AppNavigator = createStackNavigator(
     WriteCards: {
       screen: WriteCards
     },
+    StartTurn: {
+      screen: StartTurn
+    },
     Guessing: {
       screen: Guessing
-    }
+    },
+    FinishedBowl: {
+      screen: FinishedBowl
+    },
   },
   {
     initialRouteName: "Home"
@@ -33,12 +48,3 @@ const AppNavigator = createStackNavigator(
 
 
 const AppContainer = createAppContainer(AppNavigator);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
