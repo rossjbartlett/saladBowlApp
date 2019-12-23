@@ -11,6 +11,15 @@ import StartTurn from './src/StartTurn';
 import Guessing from './src/Guessing';
 import FinishedBowl from './src/FinishedBowl';
 
+/**
+ * TODO
+ * make button on nav bar to reset game, go back to Home
+ * sounds on timer
+ * 3 rounds, say what round youre starting
+ * keep score - after 3rd rounds, show scoreboard
+ * use redux store for cards in bowl?
+ */
+
 export default class App extends React.Component {
   render() {
     return (

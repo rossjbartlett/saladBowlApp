@@ -3,8 +3,7 @@ import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-nati
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import DialogInput from 'react-native-dialog-input'
-import { connect, useDispatch} from 'react-redux'
-
+import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setCards } from './redux'
 import header from './Header'
@@ -79,7 +78,6 @@ const WriteCards = (props) => {
           title="Start Game"
           disabled={localCards.length < 1}
           onPress={() => {
-            // props.setCards(cards)
             dispatch(setCards(localCards))
             console.log("starting game, cards:", localCards)
             // props.setCurrentTeam("BLUE")
@@ -91,7 +89,6 @@ const WriteCards = (props) => {
       </View>
     </View>
   )
-
 }
 
 WriteCards.navigationOptions = header("Fill The Bowl")

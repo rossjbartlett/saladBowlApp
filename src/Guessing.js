@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-native'
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
-import Dialog from "react-native-dialog"
 import CountdownCircle from 'react-native-countdown-circle'
 import Card from './Card'
 import { connect, useDispatch} from 'react-redux'
