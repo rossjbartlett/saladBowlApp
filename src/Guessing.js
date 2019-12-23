@@ -4,11 +4,12 @@ import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import CountdownCircle from 'react-native-countdown-circle'
 import Card from './Card'
-import { connect, useDispatch} from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { changeTeam } from './redux'
 import header from './Header'
 import { getTeamColor } from './Teams'
+import FadeIn from './FadeIn'
 
 const RED = "#e50000"
 const DEFAULT_GRAY = "#999"
@@ -77,6 +78,8 @@ const Guessing = (props) => {
     // drawCard()
   }
 
+  const teamColor = getTeamColor(props.currentTeam)
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Cards Left: {localCardsInBowl.length}</Text>
@@ -85,7 +88,7 @@ const Guessing = (props) => {
           seconds={seconds}
           radius={100}
           borderWidth={6}
-          color= { timeUp ? DEFAULT_GRAY : "#2fa7d9" }
+          color={timeUp ? DEFAULT_GRAY : "#2fa7d9"}
           bgColor="white"
           textStyle={{ fontSize: 64, color: timeUp ? RED : "black" }}
           onTimeElapsed={() => {
@@ -106,7 +109,7 @@ const Guessing = (props) => {
         {!timeUp && (
           <Button
             title="Got it!"
-            color={getTeamColor(props.currentTeam)}
+            color={teamColor}
             onPress={() => {
               Vibration.vibrate([100, 100])
               guessSuccess()
@@ -114,17 +117,19 @@ const Guessing = (props) => {
           />
         )}
         {timeUp && (
-          <Button
-            title="Next Player"
-            color="purple"
-            onPress={() => {
-              console.log("next turn with bowl: ", localCardsInBowl)
-              console.log("current team:", props.currentTeam)
-              dispatch(changeTeam())
-              Vibration.vibrate(200)
-              props.navigation.navigate('StartTurn', { cardsInBowl: localCardsInBowl })
-            }}
-          />
+          <FadeIn delay={1000}>
+            <Button
+              title="Next Player"
+              color={teamColor}
+              onPress={() => {
+                console.log("next turn with bowl: ", localCardsInBowl)
+                console.log("current team:", props.currentTeam)
+                dispatch(changeTeam())
+                Vibration.vibrate(200)
+                props.navigation.navigate('StartTurn', { cardsInBowl: localCardsInBowl })
+              }}
+            />
+          </FadeIn>
         )}
       </View>
     </View>
@@ -135,8 +140,8 @@ Guessing.navigationOptions = header("Salad Bowl")
 
 
 const mapStateToProps = (state) => {
-	const { currentTeam } = state
-	return { currentTeam }
+  const { currentTeam } = state
+  return { currentTeam }
 }
 
 export default connect(mapStateToProps)(Guessing)
