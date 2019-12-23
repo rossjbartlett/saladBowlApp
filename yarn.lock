@@ -4129,6 +4129,11 @@ react-native-countdown-circle@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-native-countdown-circle/-/react-native-countdown-circle-3.0.1.tgz#7905688ee21a37f1a6d41ea1d14a5bc5f83b2603"
   integrity sha512-S2O2/VyV9/i6RfLkqrWBi8u5oyh/I3+7ftlet1uRlpx/REf4bCKd6CUMNeOhgsWC+Hqxr32EQ6vjOmtG0GofQA==
 
+react-native-dialog-input@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-dialog-input/-/react-native-dialog-input-1.0.7.tgz#b2fefb4193d1784b3ae78c4a18d8fd6759466009"
+  integrity sha512-boi++dT2tzV8eCZud5Qe3LY/cdTGfgf93Vy4MFxq3O/4rBehllwCfBn5fhWMuf3JcVlzrk0fBsv/Ny766BiyVA==
+
 react-native-dialog@^5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/react-native-dialog/-/react-native-dialog-5.6.0.tgz#8c36a1e9f397eba0cea88821ebcf92f029236a1a"

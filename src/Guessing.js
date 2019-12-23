@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-native'
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import Dialog from "react-native-dialog"
 import CountdownCircle from 'react-native-countdown-circle'
 import Card from './Card'
-import { connect } from 'react-redux'
+import { connect, useDispatch} from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setCardsInBowl } from './redux'
+import { changeTeam } from './redux'
 import header from './Header'
+import { getTeamColor } from './Teams'
+
+const RED = "#e50000"
+const DEFAULT_GRAY = "#999"
 
 const styles = StyleSheet.create({
   container: {
@@ -32,29 +36,21 @@ const styles = StyleSheet.create({
   marginTop2: {
     marginTop: "2%",
   },
+  red: {
+    color: RED,
+  }
 })
 
 const Guessing = (props) => {
   const seconds = 5 // TODO 60
-  const reset = props.navigation.getParam('reset', false)
-  // const localCardsInBowl = props.cardsInBowl
-  // let localCardsInBowl = props.navigation.getParam('cardsInBowl', [])
   const propCardsInBowl = props.navigation.getParam('cardsInBowl', [])
   const [localCardsInBowl, setLocalCardsInBowl] = React.useState(propCardsInBowl)
-
-  // const localCardsInBowl = props.cardsInBowl/
   const [chosenCard, setChosenCard] = React.useState()
-  // const [chosenIndex, setChosenIndex] = React.useState()
   const [timeUp, setTimeUp] = React.useState(false)
   const [pointsThisTurn, setPointsThisTurn] = React.useState(0)
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
-    console.log("reset param: ", reset)
-    if (reset) {
-      setLocalCardsInBowl(propCardsInBowl)
-      setTimeUp(false)
-      setPointsThisTurn(0)
-    }
     drawCard() // first draw
   }, [localCardsInBowl])
 
@@ -69,8 +65,7 @@ const Guessing = (props) => {
   const guessSuccess = () => {
     // cardsInBowl.splice(chosenIndex, 1) // remove card from bowl
     console.log("removed ", chosenCard)
-    const newCardsInBowl = localCardsInBowl.filter(x => x !== chosenCard) // TODO this will remove duplicates.
-    // props.setCardsInBowl(newCardsInBowl)
+    const newCardsInBowl = localCardsInBowl.filter(x => x !== chosenCard) // TODO this will remove duplicates, use index?
     // setLocalCardsInBowl(newCardsInBowl)
     setLocalCardsInBowl(newCardsInBowl)
     console.log("new cards in bowl: ", newCardsInBowl)
@@ -85,15 +80,15 @@ const Guessing = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Cards in Bowl: {localCardsInBowl.length}</Text>
+      <Text style={styles.text}>Cards Left: {localCardsInBowl.length}</Text>
       <View style={styles.marginTop}>
         <CountdownCircle
           seconds={seconds}
           radius={100}
           borderWidth={6}
-          color="#2fa7d9"
-          bgColor="#fff"
-          textStyle={{ fontSize: 64 }}
+          color= { timeUp ? DEFAULT_GRAY : "#2fa7d9" }
+          bgColor="white"
+          textStyle={{ fontSize: 64, color: timeUp ? RED : "black" }}
           onTimeElapsed={() => {
             Vibration.vibrate([300, 300, 300])
             setTimeUp(true)
@@ -102,7 +97,7 @@ const Guessing = (props) => {
       </View>
       <View style={styles.marginTop2} >
         {timeUp && (
-          <Text style={styles.text}>Time's Up!</Text>
+          <Text style={[styles.text, styles.red, styles.bold]}>Time's Up!</Text>
         )}
       </View>
 
@@ -112,6 +107,7 @@ const Guessing = (props) => {
         {!timeUp && (
           <Button
             title="Got it!"
+            color={getTeamColor(props.currentTeam)}
             onPress={() => {
               Vibration.vibrate([100, 100])
               guessSuccess()
@@ -124,7 +120,8 @@ const Guessing = (props) => {
             color="purple"
             onPress={() => {
               console.log("next turn with bowl: ", localCardsInBowl)
-              // props.setCardsInBowl(localCardsInBowl)
+              console.log("current team:", props.currentTeam)
+              dispatch(changeTeam())
               Vibration.vibrate(200)
               props.navigation.navigate('StartTurn', { cardsInBowl: localCardsInBowl })
             }}
@@ -138,16 +135,11 @@ const Guessing = (props) => {
 Guessing.navigationOptions = header("Salad Bowl")
 
 
-// const mapStateToProps = (state) => {
-// 	const { cardsInBowl } = state
-// 	return { cardsInBowl }
-// }
+const mapStateToProps = (state) => {
+	const { currentTeam } = state
+	return { currentTeam }
+}
 
-// const mapDispatchToProps = dispatch => (
-// 	bindActionCreators({
-// 		setCardsInBowl,
-// 	}, dispatch)
-// )
-// export default connect(mapStateToProps, mapDispatchToProps)(Guessing)
+export default connect(mapStateToProps)(Guessing)
 
-export default Guessing
+// export default Guessing

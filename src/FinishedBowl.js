@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-native'
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import Dialog from "react-native-dialog"
 import CountdownCircle from 'react-native-countdown-circle'
 import Card from './Card'
-import { connect } from 'react-redux'
-import { setCardsInBowl } from './redux'
+import { connect, useDispatch } from 'react-redux'
+import { changeTeam } from './redux'
 import { bindActionCreators } from 'redux'
 import header from './Header'
 import SaladImg from './SaladImg'
+import { getTeamColor, getOtherTeam } from './Teams'
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
 })
 
 const FinishedBowl = (props) => {
+  const dispatch = useDispatch()
   return (
     <View style={styles.container}>
       <SaladImg />
@@ -38,6 +40,7 @@ const FinishedBowl = (props) => {
           title="Start Next Round"
           onPress={() => {
             console.log("restting bowl:", props.cards)
+            dispatch(changeTeam())
             Vibration.vibrate()
             props.navigation.navigate('StartTurn', { cardsInBowl: props.cards }) // reset bowl
           }}

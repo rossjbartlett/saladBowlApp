@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack'
-import configureStore from './src/redux';
+import store from './src/redux';
 import { Provider } from 'react-redux';
 
 import Home from './src/Home';
@@ -10,8 +10,6 @@ import WriteCards from './src/WriteCards';
 import StartTurn from './src/StartTurn';
 import Guessing from './src/Guessing';
 import FinishedBowl from './src/FinishedBowl';
-
-const store = configureStore()
 
 export default class App extends React.Component {
   render() {

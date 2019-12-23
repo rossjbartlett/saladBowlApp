@@ -4,7 +4,7 @@ import { View, Text, ImageBackground } from 'react-native'
 const Card = ({ text }) => {
   return (
     <View style={{
-      flex: 1, a
+      flex: 1,
       position: 'absolute',
       justifyContent: 'center',
       alignContent: 'center',
@@ -39,7 +39,7 @@ const Card = ({ text }) => {
             }}
           >
             {text}
-          </ Text>
+          </Text>
         </View>
       </ImageBackground>
     </View>

@@ -1,7 +1,10 @@
 import { createStore, combineReducers } from 'redux'
+import { getOtherTeam } from './Teams'
 
 const SET_CARDS = "SET_CARDS"
-const SET_CARDS_IN_BOWL = "SET_CARDS_IN_BOWL"
+const CHANGE_TEAM = "CHANGE_TEAM"
+
+const INIT_STATE = { cards: [], currentTeam: "BLUE" }
 
 export const setCards = (cards) => {
   return {
@@ -10,18 +13,29 @@ export const setCards = (cards) => {
   }
 }
 
-export const rootReducer = (state = [], action) => {
+export const changeTeam = (team) => {
+  return {
+    type: CHANGE_TEAM,
+  }
+}
+
+export const rootReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case SET_CARDS:
       return {
         ...state,
         cards: action.payload
       }
+    case CHANGE_TEAM:
+      return {
+        ...state,
+        currentTeam: getOtherTeam(state.currentTeam)
+      }
     default:
       return state
   }
 }
 
-const configureStore = () => createStore(rootReducer)
+const store = createStore(rootReducer)
 
-export default configureStore
+export default store

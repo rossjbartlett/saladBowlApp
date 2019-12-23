@@ -1,12 +1,14 @@
 
 import { Dimensions } from 'react-native'
+
 const WIDTH = Dimensions.get('window').width
 
 const header = (title) => {  
     return {
-        title,  
+        title,
+        headerLeft: null,
         headerStyle: {  
-            backgroundColor: '#0E71FF',  
+            backgroundColor: '#0E71FF',
         },  
         headerTintColor: '#ffffff',  
         headerTitleStyle: {  
