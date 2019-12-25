@@ -9,7 +9,6 @@ import { changeTeam } from './redux'
 import { bindActionCreators } from 'redux'
 import header from './Header'
 import SaladImg from './SaladImg'
-import { getTeamColor, getOtherTeam } from './Teams'
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +33,7 @@ const FinishedBowl = (props) => {
     <View style={styles.container}>
       <SaladImg />
       <Text style={styles.text}>You finished the bowl!</Text>
+      {/* TODO show scoreboard */}
       <View style={styles.button}>
         <Button
           title="Start Next Round"

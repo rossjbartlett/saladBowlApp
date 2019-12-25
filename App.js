@@ -13,7 +13,8 @@ import FinishedBowl from './src/FinishedBowl';
 
 /**
  * TODO
- * make button on nav bar to reset game, go back to Home
+ * fix teams alternating
+ * make button on nav bar to reset game, go back to Home (reset cards, cards in bowl, score)
  * sounds on timer
  * 3 rounds, say what round youre starting
  * keep score - after 3rd rounds, show scoreboard

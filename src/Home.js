@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     width: 200,
   },
   textInput: {
-    bottom: 50,
+    bottom: 60,
     height: 60,
-    marginBottom: 10,
+    marginBottom: 0,
     width: 300,
   },
 })

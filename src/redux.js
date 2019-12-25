@@ -14,7 +14,7 @@ export const setCards = (cards) => {
   }
 }
 
-export const changeTeam = (team) => {
+export const changeTeam = () => {
   return {
     type: CHANGE_TEAM,
   }
@@ -35,9 +35,11 @@ export const rootReducer = (state = INIT_STATE, action) => {
         cards: action.payload
       }
     case CHANGE_TEAM:
+      const other = getOtherTeam()
+      console.log("setting current to other, in reducer: ", other)
       return {
         ...state,
-        currentTeam: getOtherTeam(state.currentTeam)
+        currentTeam: other
       }
     case CREATE_TEAMS:
       return {
