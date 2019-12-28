@@ -8,7 +8,6 @@ import Card from './Card'
 import { connect } from 'react-redux'
 import header from './Header'
 import SaladImg from './SaladImg'
-import { getCurrentTeamColor } from './Teams'
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +38,7 @@ const StartTurn = (props) => {
       <View style={styles.button}>
         <Button
           title="Start Turn"
-          color={getCurrentTeamColor()}
+          color={props.currentTeamColor}
           onPress={() => {
             Vibration.vibrate()
             props.navigation.navigate('Guessing', { cardsInBowl })
@@ -53,8 +52,8 @@ const StartTurn = (props) => {
 StartTurn.navigationOptions = header("Next Turn")
 
 const mapStateToProps = (state) => {
-  const { currentTeam } = state
-  return { currentTeam }
+  const { currentTeam, currentTeamColor } = state
+  return { currentTeam, currentTeamColor }
 }
 
 export default connect(mapStateToProps)(StartTurn)

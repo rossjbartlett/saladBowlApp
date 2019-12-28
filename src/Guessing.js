@@ -8,7 +8,6 @@ import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { changeTeam } from './redux'
 import header from './Header'
-import { getCurrentTeamColor } from './Teams'
 import FadeIn from './FadeIn'
 
 const RED = "#e50000"
@@ -73,7 +72,7 @@ const Guessing = (props) => {
     if (newCardsInBowl.length <= 0) {
       console.log("finished bowl")
       Vibration.vibrate()
-      props.navigation.navigate('FinishedBowl')
+      props.navigation.replace('FinishedBowl') // replace instead of navigate to stop the timer vibration
     }
     // drawCard()
     // TODO sound ding
@@ -85,20 +84,19 @@ const Guessing = (props) => {
     setTimeUp(true)
   }
 
-  const teamColor = getCurrentTeamColor()
+  const teamColor = props.currentTeamColor
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Cards Left: {localCardsInBowl.length}</Text>
       <View style={styles.marginTop}>
-        {/* TODO make this cancel when finish before time up */}
         <CountdownCircle
           seconds={seconds}
           radius={100}
           borderWidth={6}
-          color={timeUp ? DEFAULT_GRAY : "#2fa7d9"}
+          color={timeUp ? DEFAULT_GRAY : teamColor}
           bgColor="white"
-          textStyle={{ fontSize: 64, color: timeUp ? RED : "black" }}
+          textStyle={{ fontSize: 64, color: timeUp ? RED : teamColor }}
           onTimeElapsed={() => handleTimeUp()}
         />
       </View>
@@ -144,11 +142,11 @@ const Guessing = (props) => {
 Guessing.navigationOptions = header("Salad Bowl")
 
 
-// const mapStateToProps = (state) => {
-//   const { currentTeam } = state
-//   return { currentTeam }
-// }
+const mapStateToProps = (state) => {
+  const { currentTeamColor } = state
+  return { currentTeamColor }
+}
 
-// export default connect(mapStateToProps)(Guessing)
+export default connect(mapStateToProps)(Guessing)
 
-export default Guessing
+// export default Guessing

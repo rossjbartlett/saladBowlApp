@@ -6,6 +6,14 @@ import header from './Header'
 import SaladImg from './SaladImg'
 import { useDispatch } from 'react-redux'
 import { createTeams } from './redux'
+import { TEAM_COLORS } from './Teams'
+
+const _textInput = {
+  bottom: 60,
+  height: 60,
+  marginBottom: 0,
+  width: 300,
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -20,12 +28,14 @@ const styles = StyleSheet.create({
     marginTop: "10%",
     width: 200,
   },
-  textInput: {
-    bottom: 60,
-    height: 60,
-    marginBottom: 0,
-    width: 300,
+  textInput0: {
+    ..._textInput,
+    color: TEAM_COLORS[0]
   },
+  textInput1: {
+    ..._textInput,
+    color: TEAM_COLORS[1]
+  }
 })
 
 const Home = (props) => {
@@ -39,16 +49,18 @@ const Home = (props) => {
       <SaladImg />
       <View>
         <TextInput
-          style={styles.textInput}
-          underlineColorAndroid='#a4c639'
-          placeholder="Team Name"
+          selectionColor={TEAM_COLORS[0]} // Not working?
+          style={styles.textInput0}
+          underlineColorAndroid={TEAM_COLORS[0]}
+          placeholder="Team 1 Name"
           onChangeText={text => setTeam1(text)}
           value={team1}
         />
         <TextInput
-          style={styles.textInput}
-          underlineColorAndroid='#a4c639'
-          placeholder="Team Name"
+          selectionColor={TEAM_COLORS[1]} // Not working?
+          style={styles.textInput1}
+          underlineColorAndroid={TEAM_COLORS[1]}
+          placeholder="Team 2 Name"
           onChangeText={text => setTeam2(text)}
           value={team2}
         />

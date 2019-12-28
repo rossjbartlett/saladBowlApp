@@ -10,22 +10,27 @@ import WriteCards from './src/WriteCards';
 import StartTurn from './src/StartTurn';
 import Guessing from './src/Guessing';
 import FinishedBowl from './src/FinishedBowl';
+import { MenuProvider } from 'react-native-popup-menu';
 
 /**
  * TODO
- * fix teams alternating
- * make button on nav bar to reset game, go back to Home (reset cards, cards in bowl, score)
- * sounds on timer
- * 3 rounds, say what round youre starting
  * keep score - after 3rd rounds, show scoreboard
+ * 3 rounds, say what round youre starting (customize num of roudns?)
+ * make the header be the currentTeamColor
+ * make button on nav bar to reset game, go back to Home (reset cards, cards in bowl, score)
+ * disable back button/swipe
+ * sounds on timer
  * use redux store for cards in bowl?
+ * disable clickaway on WriteCards
  */
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <AppContainer />
+        <MenuProvider>
+          <AppContainer />
+        </MenuProvider>
       </Provider>
     )
   }
