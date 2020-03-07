@@ -2,11 +2,12 @@ import React from 'react'
 import { Button, View, StyleSheet, TextInput } from 'react-native'
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
-import header from './Header'
+import Header from './Header'
 import SaladImg from './SaladImg'
 import { useDispatch } from 'react-redux'
-import { createTeams } from './redux'
+import { createGame } from './redux'
 import { TEAM_COLORS } from './Teams'
+import Scoreboard from './Scoreboard'
 
 const _textInput = {
   bottom: 60,
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
 })
 
 const Home = (props) => {
-  const [team1, setTeam1] = React.useState('');
-  const [team2, setTeam2] = React.useState('');
+  const [team1, setTeam1] = React.useState('')
+  const [team2, setTeam2] = React.useState('')
   const dispatch = useDispatch()
   const teamsValid = team1.trim() && team2.trim()
 
@@ -49,7 +50,7 @@ const Home = (props) => {
       <SaladImg />
       <View>
         <TextInput
-          selectionColor={TEAM_COLORS[0]} // Not working?
+          selectionColor={TEAM_COLORS[0]} // TODO Not working?
           style={styles.textInput0}
           underlineColorAndroid={TEAM_COLORS[0]}
           placeholder="Team 1 Name"
@@ -57,7 +58,7 @@ const Home = (props) => {
           value={team1}
         />
         <TextInput
-          selectionColor={TEAM_COLORS[1]} // Not working?
+          selectionColor={TEAM_COLORS[1]} // TODO Not working?
           style={styles.textInput1}
           underlineColorAndroid={TEAM_COLORS[1]}
           placeholder="Team 2 Name"
@@ -71,9 +72,10 @@ const Home = (props) => {
           disabled={!teamsValid}
           onPress={() => {
             const teams = [team1, team2]
-            dispatch(createTeams(teams))
+            dispatch(createGame(teams))
             console.log("Created teams:", teams)
-            props.navigation.navigate('WriteCards')}
+            props.navigation.navigate('WriteCards')
+          }
           }
         />
       </View>
@@ -81,6 +83,6 @@ const Home = (props) => {
   )
 }
 
-Home.navigationOptions = header("Salad Bowl")
+Home.navigationOptions = Header("Salad Bowl")
 
 export default Home

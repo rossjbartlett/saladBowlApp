@@ -7,7 +7,9 @@ import Card from './Card'
 import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { changeTeam } from './redux'
-import header from './Header'
+import { incrementScore } from './redux'
+
+import Header from './Header'
 import FadeIn from './FadeIn'
 
 const RED = "#e50000"
@@ -46,7 +48,6 @@ const Guessing = (props) => {
   const [localCardsInBowl, setLocalCardsInBowl] = React.useState(propCardsInBowl)
   const [chosenCard, setChosenCard] = React.useState()
   const [timeUp, setTimeUp] = React.useState(false)
-  const [pointsThisTurn, setPointsThisTurn] = React.useState(0)
   const dispatch = useDispatch()
 
   React.useEffect(() => {
@@ -61,14 +62,14 @@ const Guessing = (props) => {
     // setChosenIndex(randomIndex)
   }
 
-  const guessSuccess = () => {
+  const guessSuccess = (dispatch) => {
     // cardsInBowl.splice(chosenIndex, 1) // remove card from bowl
     console.log("removed ", chosenCard)
     const newCardsInBowl = localCardsInBowl.filter(x => x !== chosenCard) // TODO this will remove duplicates, use index?
     // setLocalCardsInBowl(newCardsInBowl)
     setLocalCardsInBowl(newCardsInBowl)
     console.log("new cards in bowl: ", newCardsInBowl)
-    setPointsThisTurn(pointsThisTurn + 1)
+    dispatch(incrementScore())
     if (newCardsInBowl.length <= 0) {
       console.log("finished bowl")
       Vibration.vibrate()
@@ -115,7 +116,7 @@ const Guessing = (props) => {
             color={teamColor}
             onPress={() => {
               Vibration.vibrate([100, 100])
-              guessSuccess()
+              guessSuccess(dispatch)
             }}
           />
         )}
@@ -129,7 +130,7 @@ const Guessing = (props) => {
                 // console.log("current team:", props.currentTeam)
                 dispatch(changeTeam())
                 Vibration.vibrate(200)
-                props.navigation.navigate('StartTurn', { cardsInBowl: localCardsInBowl })
+                props.navigation.replace('StartTurn', { cardsInBowl: localCardsInBowl })
               }}
             />
           </FadeIn>
@@ -139,7 +140,7 @@ const Guessing = (props) => {
   )
 }
 
-Guessing.navigationOptions = header("Salad Bowl")
+Guessing.navigationOptions = Header("Salad Bowl")
 
 
 const mapStateToProps = (state) => {

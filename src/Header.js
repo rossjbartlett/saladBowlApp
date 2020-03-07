@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { connect } from 'react-redux'
 import { Alert, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
 // import LinearGradient from 'react-native-linear-gradient'
 import {
@@ -18,7 +19,7 @@ const WIDTH = Dimensions.get('window').width
 // locations = { [0, 1.0]}
 // colors = { ['#5ED2A0', '#339CB1']}
 //   />
-const header = (title) => {
+const Header = (title) => {
   return {
     title,
     headerLeft: null,
@@ -57,8 +58,8 @@ const header = (title) => {
           <MenuOption
             customStyles={optionsStyles}
             onSelect={() => Alert.alert(
-              'Alert Titleasdsa',
-              'My Alert Msg', // butotns and message not apeparing?
+              'TODO Alert Title',
+              'TODO My Alert Msg',
               [
                 { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
                 {
@@ -89,4 +90,4 @@ const optionsStyles = {
   },
 }
 
-export default header
+export default (Header)

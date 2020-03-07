@@ -1,14 +1,15 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect, useDispatch } from 'react-redux'
 import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-native'
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import CountdownCircle from 'react-native-countdown-circle'
 import Card from './Card'
-import { connect, useDispatch } from 'react-redux'
 import { changeTeam } from './redux'
-import { bindActionCreators } from 'redux'
-import header from './Header'
+import Header from './Header'
 import SaladImg from './SaladImg'
+import Scoreboard from './Scoreboard'
 
 const styles = StyleSheet.create({
   container: {
@@ -31,17 +32,16 @@ const FinishedBowl = (props) => {
   const dispatch = useDispatch()
   return (
     <View style={styles.container}>
+      <Scoreboard />
       <SaladImg />
       <Text style={styles.text}>You finished the bowl!</Text>
-      {/* TODO show scoreboard */}
       <View style={styles.button}>
         <Button
           title="Start Next Round"
           onPress={() => {
-            console.log("restting bowl:", props.cards)
             dispatch(changeTeam())
             Vibration.vibrate()
-            props.navigation.navigate('StartTurn', { cardsInBowl: props.cards }) // reset bowl
+            props.navigation.replace('StartTurn', { cardsInBowl: props.cards }) // reset bowl
           }}
         />
       </View>
@@ -49,7 +49,7 @@ const FinishedBowl = (props) => {
   )
 }
 
-FinishedBowl.navigationOptions = header("Finished Bowl")
+FinishedBowl.navigationOptions = Header("Finished Bowl")
 
 const mapStateToProps = (state) => {
   const { cards } = state

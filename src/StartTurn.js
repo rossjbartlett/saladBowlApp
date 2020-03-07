@@ -1,12 +1,13 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Button, View, Text, TextInput, StyleSheet, Vibration, Image } from 'react-native'
 import { createAppContainer, NavigationActions } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import CountdownCircle from 'react-native-countdown-circle'
-import { bindActionCreators } from 'redux'
 import Card from './Card'
-import { connect } from 'react-redux'
-import header from './Header'
+import Scoreboard from './Scoreboard'
+import Header from './Header'
 import SaladImg from './SaladImg'
 
 const styles = StyleSheet.create({
@@ -20,6 +21,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
   },
+  bold: {
+    fontWeight: "bold",
+  },
   button: {
     flex: 3,
     marginTop: "5%",
@@ -32,7 +36,11 @@ const StartTurn = (props) => {
   console.log("start turn: cards", cardsInBowl)
   return (
     <View style={styles.container}>
-      <Text>Pass the device to the next {props.currentTeam} player.</Text>
+      <Scoreboard />
+      <Text>Pass the device to the next
+        <Text style={{ color: props.currentTeamColor }}> {props.currentTeam} </Text>
+        player.
+      </Text>
       <SaladImg />
       <Text style={styles.text}>Cards in Bowl: {cardsInBowl.length}</Text>
       <View style={styles.button}>
@@ -43,13 +51,13 @@ const StartTurn = (props) => {
             Vibration.vibrate()
             props.navigation.navigate('Guessing', { cardsInBowl })
           }}
-          />
+        />
       </View>
-    </View>
+    </View >
   )
 }
 
-StartTurn.navigationOptions = header("Next Turn")
+StartTurn.navigationOptions = Header("Next Turn")
 
 const mapStateToProps = (state) => {
   const { currentTeam, currentTeamColor } = state

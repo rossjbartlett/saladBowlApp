@@ -4,7 +4,7 @@
 // const GREEN = 'GREEN'
 // const TEAMS = [BLUE, GREEN]
 
-// const teamColors = ['#0E71FF', '#0EBE00']  //. TODO store in redux? name -> color
+// const teamColors = ['#0E71FF', '#0EBE00']
 
 // export const getCurrentTeamColor = () => {
 //   const teams = store.getState().teams

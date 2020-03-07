@@ -1,12 +1,12 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-native'
 import { createAppContainer } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import DialogInput from 'react-native-dialog-input'
 import { connect, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { setCards } from './redux'
-import header from './Header'
+import Header from './Header'
 import SaladImg from './SaladImg'
 
 const styles = StyleSheet.create({
@@ -47,6 +47,7 @@ const WriteCards = (props) => {
     if (input.trim()) {
       const newCards = localCards.concat([input])
       setLocalCards(newCards)
+      console.log("added card:", input)
     }
     setInput('')
     setShowPopup(false)
@@ -66,11 +67,11 @@ const WriteCards = (props) => {
           }}
         />
       </View>
-      <DialogInput 
+      <DialogInput
         isDialogVisible={showPopup}
         title="New Card"
         hintInput="Type a word or phrase"
-        submitInput={input =>  handleSubmit(input)}
+        submitInput={input => handleSubmit(input)}
         closeDialog={() => handleCancel()}>
       </DialogInput>
       <View style={styles.bottom}>
@@ -91,6 +92,6 @@ const WriteCards = (props) => {
   )
 }
 
-WriteCards.navigationOptions = header("Fill The Bowl")
+WriteCards.navigationOptions = Header("Fill The Bowl")
 
 export default WriteCards
