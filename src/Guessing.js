@@ -1,26 +1,22 @@
-import React from 'react'
-import { Button, View, Text, TextInput, StyleSheet, Vibration } from 'react-native'
-import { createAppContainer } from "react-navigation"
-import { createStackNavigator } from 'react-navigation-stack'
+import React, { useState, useEffect } from 'react'
+import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import CountdownCircle from 'react-native-countdown-circle'
 import Card from './Card'
 import { connect, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { changeTeam } from './redux'
-import { incrementScore } from './redux'
+import { changeTeam, incrementScore, incrementRound } from './data'
 
 import Header from './Header'
 import FadeIn from './FadeIn'
 
-const RED = "#e50000"
-const DEFAULT_GRAY = "#999"
+const RED = '#e50000'
+const DEFAULT_GRAY = '#999'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: "5%",
-    marginBottom: "5%",
+    marginTop: '5%',
+    marginBottom: '5%',
   },
   text: {
     fontSize: 24,
@@ -28,14 +24,14 @@ const styles = StyleSheet.create({
   bottomButton: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: "5%",
+    marginBottom: '5%',
     width: 200,
   },
   marginTop: {
-    marginTop: "5%",
+    marginTop: '5%',
   },
   marginTop2: {
-    marginTop: "2%",
+    marginTop: '2%',
   },
   red: {
     color: RED,
@@ -43,14 +39,17 @@ const styles = StyleSheet.create({
 })
 
 const Guessing = (props) => {
-  const seconds = 5 // TODO 60
+  const seconds = 5 // TODO 60, make this configurable
   const propCardsInBowl = props.navigation.getParam('cardsInBowl', [])
-  const [localCardsInBowl, setLocalCardsInBowl] = React.useState(propCardsInBowl)
-  const [chosenCard, setChosenCard] = React.useState()
-  const [timeUp, setTimeUp] = React.useState(false)
+  const [localCardsInBowl, setLocalCardsInBowl] = useState(propCardsInBowl)
+  const [chosenCard, setChosenCard] = useState()
+  const [timeUp, setTimeUp] = useState(false)
+  const teamColor = props.currentTeamColor
+  const lastRound = props.currentRound + 1 >= props.rounds.length
+  console.log("last round:", lastRound) // TODO RM
   const dispatch = useDispatch()
 
-  React.useEffect(() => {
+  useEffect(() => {
     drawCard() // first draw
   }, [localCardsInBowl])
 
@@ -58,25 +57,23 @@ const Guessing = (props) => {
     const randomIndex = Math.floor(Math.random() * localCardsInBowl.length)
     const randomCard = localCardsInBowl[randomIndex]
     setChosenCard(randomCard)
-    console.log("chosen card:", randomCard)
     // setChosenIndex(randomIndex)
   }
 
-  const guessSuccess = (dispatch) => {
-    // cardsInBowl.splice(chosenIndex, 1) // remove card from bowl
-    console.log("removed ", chosenCard)
-    const newCardsInBowl = localCardsInBowl.filter(x => x !== chosenCard) // TODO this will remove duplicates, use index?
-    // setLocalCardsInBowl(newCardsInBowl)
-    setLocalCardsInBowl(newCardsInBowl)
-    console.log("new cards in bowl: ", newCardsInBowl)
-    dispatch(incrementScore())
-    if (newCardsInBowl.length <= 0) {
-      console.log("finished bowl")
-      Vibration.vibrate()
-      props.navigation.replace('FinishedBowl') // replace instead of navigate to stop the timer vibration
-    }
-    // drawCard()
+  const guessSuccess = () => {
     // TODO sound ding
+    // cardsInBowl.splice(chosenIndex, 1) // remove card from bowl
+    const cardsLeftInBowl = localCardsInBowl.filter(x => x !== chosenCard) // TODO this will remove duplicates, use index?
+    // setLocalCardsInBowl(newCardsInBowl)
+    setLocalCardsInBowl(cardsLeftInBowl)
+    dispatch(incrementScore())
+    if (cardsLeftInBowl.length <= 0) {
+      Vibration.vibrate()
+      const nextScreen = lastRound ? 'FinishedLastBowl' : 'FinishedBowl'
+      // TODO sometimes going to lastBowl too early?
+      dispatch(incrementRound())
+      props.navigation.replace(nextScreen)
+    }
   }
 
   const handleTimeUp = () => {
@@ -84,8 +81,6 @@ const Guessing = (props) => {
     Vibration.vibrate([300, 300, 300])
     setTimeUp(true)
   }
-
-  const teamColor = props.currentTeamColor
 
   return (
     <View style={styles.container}>
@@ -96,14 +91,14 @@ const Guessing = (props) => {
           radius={100}
           borderWidth={6}
           color={timeUp ? DEFAULT_GRAY : teamColor}
-          bgColor="white"
+          bgColor='white'
           textStyle={{ fontSize: 64, color: timeUp ? RED : teamColor }}
           onTimeElapsed={() => handleTimeUp()}
         />
       </View>
       <View style={styles.marginTop2} >
         {timeUp && (
-          <Text style={[styles.text, styles.red, styles.bold]}>Time's Up!</Text>
+          <Text style={[styles.text, styles.red]}>Time's Up!</Text>
         )}
       </View>
 
@@ -112,22 +107,20 @@ const Guessing = (props) => {
       <View style={styles.bottomButton}>
         {!timeUp && (
           <Button
-            title="Got it!"
+            title='Got it!'
             color={teamColor}
             onPress={() => {
               Vibration.vibrate([100, 100])
-              guessSuccess(dispatch)
+              guessSuccess()
             }}
           />
         )}
         {timeUp && (
           <FadeIn delay={750}>
             <Button
-              title="Next Player"
+              title='Next Player'
               color={teamColor}
               onPress={() => {
-                console.log("next turn with bowl: ", localCardsInBowl)
-                // console.log("current team:", props.currentTeam)
                 dispatch(changeTeam())
                 Vibration.vibrate(200)
                 props.navigation.replace('StartTurn', { cardsInBowl: localCardsInBowl })
@@ -140,12 +133,11 @@ const Guessing = (props) => {
   )
 }
 
-Guessing.navigationOptions = Header("Salad Bowl")
-
+Guessing.navigationOptions = Header('Salad Bowl')
 
 const mapStateToProps = (state) => {
-  const { currentTeamColor } = state
-  return { currentTeamColor }
+  const { currentTeamColor, currentRound, rounds } = state
+  return { currentTeamColor, currentRound, rounds }
 }
 
 export default connect(mapStateToProps)(Guessing)

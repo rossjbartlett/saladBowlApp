@@ -1,10 +1,12 @@
 TODO
 
- * 3 rounds, say what round youre starting (customize num of rounds?)
- * make button on nav bar to reset game, go back to Home (reset cards, cards in bowl, score)
- * only show Scoreboard at end (after 3 rounds?)
- * make the header be the currentTeamColor
- * disable back button/swipe
- * sounds on timer
- * use redux store for cards in bowl?
- * disable clickaway on WriteCards
+* move "next round" text out of the scoreboard, above the button
+* call reset() from navigation menu
+* refactor all js files into src, have seperate screens/components dir
+* use keys for screen names
+* move styles to a seperate file?
+* customize the rounds (menu after writing team names: can add/remove rounds, config round timer)
+* make the header be the currentTeamColor
+* disable back button/swipe
+* sounds on timer
+* disable clickaway on WriteCards

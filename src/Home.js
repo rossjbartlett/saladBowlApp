@@ -1,13 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, View, StyleSheet, TextInput } from 'react-native'
-import { createAppContainer } from "react-navigation"
-import { createStackNavigator } from 'react-navigation-stack'
 import Header from './Header'
 import SaladImg from './SaladImg'
 import { useDispatch } from 'react-redux'
-import { createGame } from './redux'
+import { createGame, reset } from './data'
 import { TEAM_COLORS } from './Teams'
-import Scoreboard from './Scoreboard'
 
 const _textInput = {
   bottom: 60,
@@ -21,12 +18,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: "5%",
-    marginBottom: "5%",
+    marginTop: '5%',
+    marginBottom: '5%',
   },
   button: {
     flex: 5,
-    marginTop: "10%",
+    marginTop: '10%',
     width: 200,
   },
   textInput0: {
@@ -45,6 +42,10 @@ const Home = (props) => {
   const dispatch = useDispatch()
   const teamsValid = team1.trim() && team2.trim()
 
+  useEffect(() => {
+    dispatch(reset()) // ensure new game on first render
+  }, [])
+
   return (
     <View style={styles.container}>
       <SaladImg />
@@ -53,7 +54,7 @@ const Home = (props) => {
           selectionColor={TEAM_COLORS[0]} // TODO Not working?
           style={styles.textInput0}
           underlineColorAndroid={TEAM_COLORS[0]}
-          placeholder="Team 1 Name"
+          placeholder='Team 1 Name'
           onChangeText={text => setTeam1(text)}
           value={team1}
         />
@@ -61,19 +62,18 @@ const Home = (props) => {
           selectionColor={TEAM_COLORS[1]} // TODO Not working?
           style={styles.textInput1}
           underlineColorAndroid={TEAM_COLORS[1]}
-          placeholder="Team 2 Name"
+          placeholder='Team 2 Name'
           onChangeText={text => setTeam2(text)}
           value={team2}
         />
       </View>
       <View style={styles.button}>
         <Button
-          title="New Game"
+          title='New Game'
           disabled={!teamsValid}
           onPress={() => {
             const teams = [team1, team2]
             dispatch(createGame(teams))
-            console.log("Created teams:", teams)
             props.navigation.navigate('WriteCards')
           }
           }
@@ -83,6 +83,6 @@ const Home = (props) => {
   )
 }
 
-Home.navigationOptions = Header("Salad Bowl")
+Home.navigationOptions = Header('Salad Bowl')
 
 export default Home

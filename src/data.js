@@ -1,10 +1,7 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 import { getOtherTeam, TEAM_COLORS } from './Teams'
 
-const SET_CARDS = "SET_CARDS"
-const INCREMENT_SCORE = "INCREMENT_SCORE"
-const CHANGE_TEAM = "CHANGE_TEAM"
-const CREATE_GAME = "CREATE_GAME"
+const DEFAULT_ROUNDS = ['Taboo', 'Charades', 'One Word Association']
 
 const INIT_STATE = {
   cards: [],
@@ -13,6 +10,23 @@ const INIT_STATE = {
   currentTeamColor: '',
   teamColors: {},
   score: {},
+  rounds: DEFAULT_ROUNDS,
+  currentRound: 0,
+}
+
+// Action Types
+const SET_CARDS = 'SET_CARDS'
+const INCREMENT_SCORE = 'INCREMENT_SCORE'
+const INCREMENT_ROUND = 'INCREMENT_ROUND'
+const CHANGE_TEAM = 'CHANGE_TEAM'
+const CREATE_GAME = 'CREATE_GAME'
+const RESET = 'RESET'
+
+// Actions
+export const reset = () => {
+  return {
+    type: RESET,
+  }
 }
 
 export const setCards = (cards) => {
@@ -28,7 +42,13 @@ export const incrementScore = () => {
   }
 }
 
-// TOO make CLEAR_SCORE for resetting the game
+// TODO make CLEAR_SCORE for resetting the game
+
+export const incrementRound = () => {
+  return {
+    type: INCREMENT_ROUND,
+  }
+}
 
 export const changeTeam = () => {
   return {
@@ -45,6 +65,8 @@ export const createGame = (teams) => {
 
 export const rootReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
+    case RESET:
+      return INIT_STATE
     case SET_CARDS:
       return {
         ...state,
@@ -53,14 +75,17 @@ export const rootReducer = (state = INIT_STATE, action) => {
     case INCREMENT_SCORE:
       const newScore = state.score
       newScore[state.currentTeam] = state.score[state.currentTeam] + 1
-      console.log("score:", newScore)
       return {
         ...state,
         score: newScore
       }
+    case INCREMENT_ROUND:
+      return {
+        ...state,
+        currentRound: state.currentRound + 1
+      }
     case CHANGE_TEAM:
       const newTeam = getOtherTeam(state.teams, state.currentTeam)
-      console.log("setting currentTeam in reducer: ", newTeam, 'color ', state.teamColors[newTeam], 'teamColors', state.teamColors)
       return {
         ...state,
         currentTeam: newTeam,

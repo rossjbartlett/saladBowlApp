@@ -9,7 +9,7 @@ const Card = ({ text }) => {
       justifyContent: 'center',
       alignContent: 'center',
       width: '100%',
-      marginTop: "80%"
+      marginTop: '80%'
     }}>
       <ImageBackground
         source={require('../assets/postit.png')}
@@ -22,12 +22,12 @@ const Card = ({ text }) => {
         <View
           style={{
             position: 'absolute',
-            top: "100%",
+            justifyContent: 'center',
+            alignItems: 'center',
+            top: '100%',
             left: 0,
             right: 0,
             bottom: 0,
-            justifyContent: 'center',
-            alignItems: 'center',
           }}
         >
           <Text
@@ -37,6 +37,7 @@ const Card = ({ text }) => {
               fontSize: 28,
               width: '55%',
             }}
+          // TODO put a random tilt
           >
             {text}
           </Text>

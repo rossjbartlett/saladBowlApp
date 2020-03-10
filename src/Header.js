@@ -1,7 +1,6 @@
 
-import React from 'react';
-import { connect } from 'react-redux'
-import { Alert, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { Alert, Text, Dimensions } from 'react-native'
 // import LinearGradient from 'react-native-linear-gradient'
 import {
   Menu,
@@ -37,7 +36,7 @@ const Header = (title) => {
     // <Image
     //   // resizeMode='contain'
     //   style={{ width: 100, height: 200, resizeMode: 'contain'}}
-    //   source={require("../assets/gradient.png")}
+    //   source={require('../assets/gradient.png')}
     // />
     // ),
     headerTintColor: '#ffffff',
@@ -58,8 +57,8 @@ const Header = (title) => {
           <MenuOption
             customStyles={optionsStyles}
             onSelect={() => Alert.alert(
-              'TODO Alert Title',
-              'TODO My Alert Msg',
+              'Reset Game',
+              'Are you sure you want to reset?',
               [
                 { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
                 {
