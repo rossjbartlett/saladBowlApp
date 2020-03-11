@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import Screens from './src/Screens'
 import Header from './Header'
 import SaladImg from './SaladImg'
 
@@ -40,7 +41,7 @@ const FinishedLastBowl = (props) => {
           title='View Results'
           onPress={() => {
             Vibration.vibrate()
-            props.navigation.navigate('GameOver') // TODO replace() if need redux update? TODO make screen
+            props.navigation.navigate(Screens.GAME_OVER) // TODO replace() if need redux update?
           }}
         />
       </View>

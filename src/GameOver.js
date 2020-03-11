@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavigationActions, StackActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import Screens from './src/Screens'
 import Header from './Header'
 import SaladImg from './SaladImg'
 import Scoreboard from './Scoreboard'
@@ -57,7 +58,7 @@ const GameOver = ({ score, teamColors, navigation }) => {
               {
                 index: 0,
                 actions: [
-                  NavigationActions.navigate({ routeName: 'Home' })
+                  NavigationActions.navigate({ routeName: Screens.HOME })
                 ]
               }))
           }}

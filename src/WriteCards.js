@@ -3,6 +3,7 @@ import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import DialogInput from 'react-native-dialog-input'
 import { useDispatch } from 'react-redux'
 import { setCards } from './data'
+import Screens from './src/Screens'
 import Header from './Header'
 import SaladImg from './SaladImg'
 
@@ -77,7 +78,7 @@ const WriteCards = (props) => {
           onPress={() => {
             dispatch(setCards(localCards))
             Vibration.vibrate(200)
-            props.navigation.navigate('StartTurn', { cardsInBowl: localCards })
+            props.navigation.navigate(Screens.START_TURN, { cardsInBowl: localCards })
           }}
         />
       </View>

@@ -46,7 +46,7 @@ const Guessing = (props) => {
   const [timeUp, setTimeUp] = useState(false)
   const teamColor = props.currentTeamColor
   const lastRound = props.currentRound + 1 >= props.rounds.length
-  console.log("last round:", lastRound) // TODO RM
+  console.log('last round:', lastRound) // TODO RM
   const dispatch = useDispatch()
 
   useEffect(() => {

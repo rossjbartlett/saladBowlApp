@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import Screens from './Screens'
 import Scoreboard from './Scoreboard'
 import Header from './Header'
 import SaladImg from './SaladImg'
@@ -45,7 +46,7 @@ const StartTurn = (props) => {
           color={props.currentTeamColor}
           onPress={() => {
             Vibration.vibrate()
-            props.navigation.navigate('Guessing', { cardsInBowl })
+            props.navigation.navigate(Screens.GUESSING, { cardsInBowl })
           }}
         />
       </View>

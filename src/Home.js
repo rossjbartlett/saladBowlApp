@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { Button, View, StyleSheet, TextInput } from 'react-native'
-import Header from './Header'
 import SaladImg from './SaladImg'
+import Screens from './src/Screens'
+import Header from './Header'
 import { useDispatch } from 'react-redux'
 import { createGame, reset } from './data'
 import { TEAM_COLORS } from './Teams'
@@ -74,7 +75,7 @@ const Home = (props) => {
           onPress={() => {
             const teams = [team1, team2]
             dispatch(createGame(teams))
-            props.navigation.navigate('WriteCards')
+            props.navigation.navigate(Screens.WRITE_CARDS)
           }
           }
         />

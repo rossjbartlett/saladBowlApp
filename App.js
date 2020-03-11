@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import store from './src/data'
 import { Provider } from 'react-redux'
-
+import Screens from './src/Screens'
 import Home from './src/Home'
 import WriteCards from './src/WriteCards'
 import StartTurn from './src/StartTurn'
@@ -28,30 +28,30 @@ export default class App extends React.Component {
 
 const AppNavigator = createStackNavigator(
   {
-    Home: {
+    [Screens.HOME]: {
       screen: Home
     },
-    WriteCards: {
+    [Screens.WRITE_CARDS]: {
       screen: WriteCards
     },
-    StartTurn: {
+    [Screens.START_TURN]: {
       screen: StartTurn
     },
-    Guessing: {
+    [Screens.GUESSING]: {
       screen: Guessing
     },
-    FinishedBowl: {
+    [Screens.FINISHED_BOWL]: {
       screen: FinishedBowl
     },
-    FinishedLastBowl: {
+    [Screens.FINSIHED_LAST_BOWL]: {
       screen: FinishedLastBowl
     },
-    GameOver: {
+    [Screens.GAME_OVER]: {
       screen: GameOver
     },
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: Screens.HOME
   },
 )
 
