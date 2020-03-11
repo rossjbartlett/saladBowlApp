@@ -42,8 +42,6 @@ export const incrementScore = () => {
   }
 }
 
-// TODO make CLEAR_SCORE for resetting the game
-
 export const incrementRound = () => {
   return {
     type: INCREMENT_ROUND,
@@ -66,6 +64,7 @@ export const createGame = (teams) => {
 export const rootReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case RESET:
+      console.log("RESETTING..")
       return INIT_STATE
     case SET_CARDS:
       return {

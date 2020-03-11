@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import CountdownCircle from 'react-native-countdown-circle'
-import Card from './Card'
 import { connect, useDispatch } from 'react-redux'
-import { changeTeam, incrementScore, incrementRound } from './data'
-
-import Header from './Header'
+import { changeTeam, incrementScore } from './data'
+import Screens from './Screens'
 import FadeIn from './FadeIn'
+import Card from './Card'
+import Header from './Header'
 
 const RED = '#e50000'
 const DEFAULT_GRAY = '#999'
@@ -42,11 +42,11 @@ const Guessing = (props) => {
   const seconds = 5 // TODO 60, make this configurable
   const propCardsInBowl = props.navigation.getParam('cardsInBowl', [])
   const [localCardsInBowl, setLocalCardsInBowl] = useState(propCardsInBowl)
-  const [chosenCard, setChosenCard] = useState()
+  const [chosenCardIndex, setchosenCardIndex] = useState()
   const [timeUp, setTimeUp] = useState(false)
   const teamColor = props.currentTeamColor
   const lastRound = props.currentRound + 1 >= props.rounds.length
-  console.log('last round:', lastRound) // TODO RM
+  const chosenCard = localCardsInBowl[chosenCardIndex]
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -55,24 +55,22 @@ const Guessing = (props) => {
 
   const drawCard = () => {
     const randomIndex = Math.floor(Math.random() * localCardsInBowl.length)
-    const randomCard = localCardsInBowl[randomIndex]
-    setChosenCard(randomCard)
-    // setChosenIndex(randomIndex)
+    setchosenCardIndex(randomIndex)
+  }
+
+  const handleFinishedBowl = () => {
+    Vibration.vibrate()
+    const nextScreen = lastRound ? Screens.FINSIHED_LAST_BOWL : Screens.FINISHED_BOWL
+    props.navigation.replace(nextScreen)
   }
 
   const guessSuccess = () => {
     // TODO sound ding
-    // cardsInBowl.splice(chosenIndex, 1) // remove card from bowl
-    const cardsLeftInBowl = localCardsInBowl.filter(x => x !== chosenCard) // TODO this will remove duplicates, use index?
-    // setLocalCardsInBowl(newCardsInBowl)
+    const cardsLeftInBowl = localCardsInBowl.filter((_, i) => i !== chosenCardIndex)
     setLocalCardsInBowl(cardsLeftInBowl)
     dispatch(incrementScore())
     if (cardsLeftInBowl.length <= 0) {
-      Vibration.vibrate()
-      const nextScreen = lastRound ? 'FinishedLastBowl' : 'FinishedBowl'
-      // TODO sometimes going to lastBowl too early?
-      dispatch(incrementRound())
-      props.navigation.replace(nextScreen)
+      handleFinishedBowl()
     }
   }
 
@@ -123,7 +121,7 @@ const Guessing = (props) => {
               onPress={() => {
                 dispatch(changeTeam())
                 Vibration.vibrate(200)
-                props.navigation.replace('StartTurn', { cardsInBowl: localCardsInBowl })
+                props.navigation.replace(Screens.START_TURN, { cardsInBowl: localCardsInBowl })
               }}
             />
           </FadeIn>
@@ -141,5 +139,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Guessing)
-
-// export default Guessing

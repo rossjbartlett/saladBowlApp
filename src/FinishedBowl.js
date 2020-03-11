@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
-import { changeTeam } from './data'
+import { changeTeam, incrementRound } from './data'
+import Screens from './Screens'
 import Header from './Header'
 import SaladImg from './SaladImg'
 import Scoreboard from './Scoreboard'
+import RoundInfo from './RoundInfo'
 
 const styles = StyleSheet.create({
   container: {
@@ -29,17 +31,19 @@ const FinishedBowl = (props) => {
   return (
     <View style={styles.container}>
 
-      <Scoreboard showNextRound />
+      <Scoreboard />
       <Text style={styles.text}>You finished the bowl!</Text>
       <SaladImg />
+      <RoundInfo showNextRound />
 
       <View style={styles.button}>
         <Button
-          title='Start Next Round'
+          title='Next Round'
           onPress={() => {
             dispatch(changeTeam())
+            dispatch(incrementRound())
             Vibration.vibrate()
-            props.navigation.replace('StartTurn', { cardsInBowl: props.cards }) // reset bowl
+            props.navigation.replace(Screens.START_TURN, { cardsInBowl: props.cards }) // reset bowl
           }}
         />
       </View>
@@ -50,8 +54,8 @@ const FinishedBowl = (props) => {
 FinishedBowl.navigationOptions = Header('Finished Bowl')
 
 const mapStateToProps = (state) => {
-  const { cards, currentRound, rounds } = state
-  return { cards, currentRound, rounds }
+  const { cards } = state
+  return { cards }
 }
 
 export default connect(mapStateToProps)(FinishedBowl)

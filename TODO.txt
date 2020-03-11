@@ -1,9 +1,8 @@
 TODO
 
-* move "next round" text out of the scoreboard, above the button
+* implement tiebreaker round
 * call reset() from navigation menu
 * refactor all js files into src, have seperate screens/components dir
-* use keys for screen names
 * move styles to a seperate file?
 * customize the rounds (menu after writing team names: can add/remove rounds, config round timer)
 * make the header be the currentTeamColor

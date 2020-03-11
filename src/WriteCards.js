@@ -3,7 +3,7 @@ import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import DialogInput from 'react-native-dialog-input'
 import { useDispatch } from 'react-redux'
 import { setCards } from './data'
-import Screens from './src/Screens'
+import Screens from './Screens'
 import Header from './Header'
 import SaladImg from './SaladImg'
 

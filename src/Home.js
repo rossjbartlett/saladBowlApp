@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Button, View, StyleSheet, TextInput } from 'react-native'
 import SaladImg from './SaladImg'
-import Screens from './src/Screens'
+import Screens from './Screens'
 import Header from './Header'
 import { useDispatch } from 'react-redux'
 import { createGame, reset } from './data'

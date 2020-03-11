@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import SaladImg from './SaladImg'
+import Header from './Header'
 import Screens from './Screens'
 import Scoreboard from './Scoreboard'
-import Header from './Header'
-import SaladImg from './SaladImg'
+import RoundInfo from './RoundInfo'
 
 const styles = StyleSheet.create({
   container: {
@@ -33,6 +34,7 @@ const StartTurn = (props) => {
   return (
     <View style={styles.container}>
       <Scoreboard />
+      <RoundInfo />
       <Text>
         Pass the device to the next
         <Text style={[styles.bold, { color: props.currentTeamColor }]}> {props.currentTeam} </Text>

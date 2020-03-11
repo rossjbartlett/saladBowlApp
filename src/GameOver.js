@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions, StackActions } from 'react-navigation'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
-import Screens from './src/Screens'
+import Screens from './Screens'
 import Header from './Header'
 import SaladImg from './SaladImg'
 import Scoreboard from './Scoreboard'
@@ -38,11 +38,16 @@ const GameOver = ({ score, teamColors, navigation }) => {
     <View style={styles.container}>
 
       <Scoreboard />
-
       <Text style={[styles.bold, styles.big]}>
-        Team
-        <Text style={{ color: winningTeamColor }}> {winningTeam} </Text>
-        wins!
+        {tied ? (
+          "It's a tie!"
+        ) : (
+            <Text style={[styles.bold, styles.big]}>
+              Team
+              <Text style={{ color: winningTeamColor }}> {winningTeam} </Text>
+            wins!
+            </Text>
+          )}
       </Text>
 
       <SaladImg />

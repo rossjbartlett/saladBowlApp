@@ -11,12 +11,6 @@ const styles = StyleSheet.create({
 
 const Scoreboard = (props) => {
   const [t1, t2] = props.teams
-  const gameOver = props.currentRound >= props.rounds.length
-  const next = props.showNextRound
-
-  const roundName = props.rounds[props.currentRound]
-  const roundNumText = next ? 'Next Round' : `Round ${props.currentRound + 1}`
-  const roundText = `${roundNumText}: ${roundName}`
 
   return (
     <View style={{ marginBottom: '5%' }}>
@@ -28,19 +22,13 @@ const Scoreboard = (props) => {
         <Text style={{ color: props.teamColors[t2] }}> {props.score[t2]} </Text>
       </Text>
 
-      {!gameOver && (
-        <Text style={[styles.boldCentered, { fontSize: 18 }]}>
-          {roundText}
-        </Text>
-      )}
-
     </View>
   )
 }
 
 const mapStateToProps = (state) => {
-  const { score, teamColors, teams, rounds, currentRound } = state
-  return { score, teamColors, teams, rounds, currentRound }
+  const { score, teamColors, teams } = state
+  return { score, teamColors, teams }
 }
 
 export default connect(mapStateToProps)(Scoreboard)
