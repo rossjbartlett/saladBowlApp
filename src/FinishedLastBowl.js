@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import { BLUE } from './constants'
 import Screens from './Screens'
-import Header from './Header'
 import SaladImg from './SaladImg'
 
 const styles = StyleSheet.create({
@@ -39,6 +39,7 @@ const FinishedLastBowl = (props) => {
       <View style={styles.button}>
         <Button
           title='View Results'
+          color={BLUE}
           onPress={() => {
             Vibration.vibrate()
             props.navigation.navigate(Screens.GAME_OVER)
@@ -48,7 +49,5 @@ const FinishedLastBowl = (props) => {
     </View>
   )
 }
-
-FinishedLastBowl.navigationOptions = Header('Finished Bowl')
 
 export default FinishedLastBowl

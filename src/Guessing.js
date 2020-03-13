@@ -6,7 +6,6 @@ import { changeTeam, incrementScore } from './data'
 import Screens from './Screens'
 import FadeIn from './FadeIn'
 import Card from './Card'
-import Header from './Header'
 
 const RED = '#e50000'
 const DEFAULT_GRAY = '#999'
@@ -130,8 +129,6 @@ const Guessing = (props) => {
     </View>
   )
 }
-
-Guessing.navigationOptions = Header('Salad Bowl')
 
 const mapStateToProps = (state) => {
   const { currentTeamColor, currentRound, rounds } = state

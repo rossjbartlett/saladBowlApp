@@ -1,7 +1,6 @@
 TODO
 
 * implement tiebreaker round
-* call reset() from navigation menu
 * refactor all js files into src, have seperate containers (screens?)/components dir
 * use redux-toolkit to simplify redcucer
 * move styles to a seperate file?

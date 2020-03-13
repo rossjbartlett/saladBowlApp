@@ -2,8 +2,8 @@ import React from 'react'
 import { connect, useDispatch } from 'react-redux'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import { changeTeam, incrementRound } from './data'
+import { BLUE } from './constants'
 import Screens from './Screens'
-import Header from './Header'
 import SaladImg from './SaladImg'
 import Scoreboard from './Scoreboard'
 import RoundInfo from './RoundInfo'
@@ -39,6 +39,7 @@ const FinishedBowl = (props) => {
       <View style={styles.button}>
         <Button
           title='Next Round'
+          color={BLUE}
           onPress={() => {
             dispatch(changeTeam())
             dispatch(incrementRound())
@@ -50,8 +51,6 @@ const FinishedBowl = (props) => {
     </View>
   )
 }
-
-FinishedBowl.navigationOptions = Header('Finished Bowl')
 
 const mapStateToProps = (state) => {
   const { cards } = state

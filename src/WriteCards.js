@@ -3,8 +3,8 @@ import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import DialogInput from 'react-native-dialog-input'
 import { useDispatch } from 'react-redux'
 import { setCards } from './data'
+import { BLUE } from './constants'
 import Screens from './Screens'
-import Header from './Header'
 import SaladImg from './SaladImg'
 
 const styles = StyleSheet.create({
@@ -59,6 +59,7 @@ const WriteCards = (props) => {
       <View style={styles.button}>
         <Button
           title='Add Card'
+          color={BLUE}
           onPress={() => {
             setShowPopup(true)
           }}
@@ -75,6 +76,7 @@ const WriteCards = (props) => {
         <Button
           title='Start Game'
           disabled={localCards.length < 1}
+          color={BLUE}
           onPress={() => {
             dispatch(setCards(localCards))
             Vibration.vibrate(200)
@@ -85,7 +87,5 @@ const WriteCards = (props) => {
     </View>
   )
 }
-
-WriteCards.navigationOptions = Header('Fill The Bowl')
 
 export default WriteCards

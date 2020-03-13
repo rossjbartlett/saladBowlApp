@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import SaladImg from './SaladImg'
-import Header from './Header'
 import Screens from './Screens'
 import Scoreboard from './Scoreboard'
 import RoundInfo from './RoundInfo'
@@ -55,8 +54,6 @@ const StartTurn = (props) => {
     </View >
   )
 }
-
-StartTurn.navigationOptions = Header('Next Turn')
 
 const mapStateToProps = (state) => {
   const { currentTeam, currentTeamColor } = state

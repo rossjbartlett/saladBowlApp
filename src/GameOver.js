@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavigationActions, StackActions } from 'react-navigation'
-import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import { Button, View, Text, StyleSheet } from 'react-native'
+import { BLUE } from './constants'
 import Screens from './Screens'
-import Header from './Header'
+import clearAndGo from './ClearAndGo'
 import SaladImg from './SaladImg'
 import Scoreboard from './Scoreboard'
 
@@ -57,23 +57,14 @@ const GameOver = ({ score, teamColors, navigation }) => {
       <View style={styles.button}>
         <Button
           title='New Game'
-          onPress={() => {
-            Vibration.vibrate()
-            navigation.dispatch(StackActions.reset(
-              {
-                index: 0,
-                actions: [
-                  NavigationActions.navigate({ routeName: Screens.HOME })
-                ]
-              }))
-          }}
+          color={BLUE}
+          onPress={() => clearAndGo(navigation, Screens.HOME)}
+
         />
       </View>
     </View>
   )
 }
-
-GameOver.navigationOptions = Header('Game Over')
 
 const mapStateToProps = (state) => {
   const { teamColors, score } = state

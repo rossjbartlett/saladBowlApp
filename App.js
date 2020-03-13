@@ -13,6 +13,7 @@ import FinishedLastBowl from './src/FinishedLastBowl'
 import GameOver from './src/GameOver'
 
 import { MenuProvider } from 'react-native-popup-menu'
+import Header from './src/Header'
 
 export default class App extends React.Component {
   render() {
@@ -26,28 +27,37 @@ export default class App extends React.Component {
   }
 }
 
+const nav = title => ({ navigation }) => Header(navigation, title)
+
 const AppNavigator = createStackNavigator(
   {
     [Screens.HOME]: {
-      screen: Home
+      screen: Home,
+      navigationOptions: nav('Salad Bowl')
     },
     [Screens.WRITE_CARDS]: {
-      screen: WriteCards
+      screen: WriteCards,
+      navigationOptions: nav('Write Cards')
     },
     [Screens.START_TURN]: {
-      screen: StartTurn
+      screen: StartTurn,
+      navigationOptions: nav('Next Turn')
     },
     [Screens.GUESSING]: {
-      screen: Guessing
+      screen: Guessing,
+      navigationOptions: nav('Salad Bowl')
     },
     [Screens.FINISHED_BOWL]: {
-      screen: FinishedBowl
+      screen: FinishedBowl,
+      navigationOptions: nav('Finished Bowl')
     },
     [Screens.FINSIHED_LAST_BOWL]: {
-      screen: FinishedLastBowl
+      screen: FinishedLastBowl,
+      navigationOptions: nav('Finished Bowl')
     },
     [Screens.GAME_OVER]: {
-      screen: GameOver
+      screen: GameOver,
+      navigationOptions: nav('Game Over')
     },
   },
   {

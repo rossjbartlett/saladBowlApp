@@ -1,7 +1,6 @@
 
 import React from 'react'
 import { Alert, Text, Dimensions } from 'react-native'
-
 import {
   Menu,
   MenuOptions,
@@ -9,6 +8,10 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import clearAndGo from './ClearAndGo'
+import { BLUE } from './constants'
+import Screens from './Screens'
+
 
 const ICON_SIZE = 24
 
@@ -24,7 +27,9 @@ const menuOptionStyles = {
     // width: 0,
   },
 }
-const CustomMenu = () => {
+
+const CustomMenu = (navigation) => {
+
   return (
     <Menu>
       <MenuTrigger>
@@ -43,15 +48,16 @@ const CustomMenu = () => {
           customStyles={menuOptionStyles}
           onSelect={() => Alert.alert(
             'Reset Game',
-            'Are you sure you want to reset?',
+            'Are you sure you want to reset? Any curent game progress will be lost.',
             [
-              { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
               {
                 text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
                 style: 'cancel',
               },
-              { text: 'OK', onPress: () => console.log('OK Pressed') },
+              {
+                text: 'OK',
+                onPress: () => clearAndGo(navigation, Screens.HOME)
+              },
             ],
             { cancelable: false },
           )} >
@@ -62,19 +68,19 @@ const CustomMenu = () => {
   )
 }
 
-const Header = (title) => {
+const Header = (navigation, title) => {
   return {
     title,
     headerLeft: null,
     headerStyle: {
-      backgroundColor: '#0E71FF', // TODO blue constant?
+      backgroundColor: BLUE,
     },
     headerTintColor: '#ffffff',
     headerTitleStyle: {
       fontWeight: 'bold',
       width: WIDTH - 75,
     },
-    headerRight: () => CustomMenu(),
+    headerRight: () => CustomMenu(navigation),
   }
 }
 

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { Button, View, StyleSheet, TextInput } from 'react-native'
-import SaladImg from './SaladImg'
-import Screens from './Screens'
-import Header from './Header'
 import { useDispatch } from 'react-redux'
 import { createGame, reset } from './data'
-import { TEAM_COLORS } from './Teams'
+import { TEAM_COLORS, BLUE } from './constants'
+import SaladImg from './SaladImg'
+import Screens from './Screens'
 
 const _textInput = {
   bottom: 60,
@@ -72,6 +71,7 @@ const Home = (props) => {
         <Button
           title='New Game'
           disabled={!teamsValid}
+          color={BLUE}
           onPress={() => {
             const teams = [team1, team2]
             dispatch(createGame(teams))
@@ -83,7 +83,5 @@ const Home = (props) => {
     </View>
   )
 }
-
-Home.navigationOptions = Header('Salad Bowl')
 
 export default Home

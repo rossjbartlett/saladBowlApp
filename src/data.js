@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { getOtherTeam, TEAM_COLORS } from './Teams'
+import { TEAM_COLORS } from './constants'
 
 const DEFAULT_ROUNDS = ['Taboo', 'Charades', 'One Word Association']
 
@@ -12,6 +12,11 @@ const INIT_STATE = {
   score: {},
   rounds: DEFAULT_ROUNDS,
   currentRound: 0,
+}
+
+const getOtherTeam = (teams, currentTeam) => {
+  const other = teams[(teams.indexOf(currentTeam) + 1) % 2]
+  return other
 }
 
 // Action Types
@@ -64,7 +69,6 @@ export const createGame = (teams) => {
 export const rootReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case RESET:
-      console.log("RESETTING..")
       return INIT_STATE
     case SET_CARDS:
       return {
