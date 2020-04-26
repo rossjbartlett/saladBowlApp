@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { createStore } from 'redux'
 import { TEAM_COLORS } from './constants'
 
@@ -11,7 +12,7 @@ const INIT_STATE = {
   teamColors: {},
   score: {},
   rounds: DEFAULT_ROUNDS,
-  currentRound: 0,
+  currentRound: 0
 }
 
 const getOtherTeam = (teams, currentTeam) => {
@@ -30,39 +31,39 @@ const RESET = 'RESET'
 // Actions
 export const reset = () => {
   return {
-    type: RESET,
+    type: RESET
   }
 }
 
 export const setCards = (cards) => {
   return {
     type: SET_CARDS,
-    payload: cards,
+    payload: cards
   }
 }
 
 export const incrementScore = () => {
   return {
-    type: INCREMENT_SCORE,
+    type: INCREMENT_SCORE
   }
 }
 
 export const incrementRound = () => {
   return {
-    type: INCREMENT_ROUND,
+    type: INCREMENT_ROUND
   }
 }
 
 export const changeTeam = () => {
   return {
-    type: CHANGE_TEAM,
+    type: CHANGE_TEAM
   }
 }
 
 export const createGame = (teams) => {
   return {
     type: CREATE_GAME,
-    payload: teams,
+    payload: teams
   }
 }
 
@@ -73,7 +74,7 @@ export const rootReducer = (state = INIT_STATE, action) => {
     case SET_CARDS:
       return {
         ...state,
-        cards: action.payload,
+        cards: action.payload
       }
     case INCREMENT_SCORE:
       const newScore = state.score
@@ -92,7 +93,7 @@ export const rootReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         currentTeam: newTeam,
-        currentTeamColor: state.teamColors[newTeam],
+        currentTeamColor: state.teamColors[newTeam]
       }
     case CREATE_GAME:
       const [t1, t2] = action.payload
@@ -103,7 +104,7 @@ export const rootReducer = (state = INIT_STATE, action) => {
         currentTeam: t1,
         currentTeamColor: c1,
         teamColors: { [t1]: c1, [t2]: c2 },
-        score: { [t1]: 0, [t2]: 0 },
+        score: { [t1]: 0, [t2]: 0 }
       }
     default:
       return state

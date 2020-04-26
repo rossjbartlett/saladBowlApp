@@ -1,13 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet } from 'react-native'
-
-const styles = StyleSheet.create({
-  boldCentered: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-})
+import { View, Text } from 'react-native'
+import commonStyles from '../styles'
 
 const Scoreboard = (props) => {
   const [t1, t2] = props.teams
@@ -15,7 +9,7 @@ const Scoreboard = (props) => {
   return (
     <View style={{ marginBottom: '5%' }}>
 
-      <Text style={[styles.boldCentered, { fontSize: 24 }]}>
+      <Text style={[commonStyles.boldCentered, { fontSize: 24 }]}>
         Score:
         <Text style={{ color: props.teamColors[t1] }}> {props.score[t1]} </Text>
         -

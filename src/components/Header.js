@@ -5,13 +5,12 @@ import {
   Menu,
   MenuOptions,
   MenuOption,
-  MenuTrigger,
+  MenuTrigger
 } from 'react-native-popup-menu'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import clearAndGo from './ClearAndGo'
-import { BLUE } from './constants'
-import Screens from './Screens'
-
+import clearAndGo from '../clearAndGo'
+import { BLUE } from '../constants'
+import Screens from '../screens'
 
 const ICON_SIZE = 24
 
@@ -25,11 +24,10 @@ const menuOptionStyles = {
   optionWrapper: {
     // backgroundColor: 'yellow',
     // width: 0,
-  },
+  }
 }
 
 const CustomMenu = (navigation) => {
-
   return (
     <Menu>
       <MenuTrigger>
@@ -48,18 +46,18 @@ const CustomMenu = (navigation) => {
           customStyles={menuOptionStyles}
           onSelect={() => Alert.alert(
             'Reset Game',
-            'Are you sure you want to reset? Any curent game progress will be lost.',
+            'Are you sure you want to reset? Any current game progress will be lost.',
             [
               {
                 text: 'Cancel',
-                style: 'cancel',
+                style: 'cancel'
               },
               {
                 text: 'OK',
                 onPress: () => clearAndGo(navigation, Screens.HOME)
-              },
+              }
             ],
-            { cancelable: false },
+            { cancelable: false }
           )} >
           <Text style={{ color: 'red' }}>Reset Game</Text>
         </MenuOption>
@@ -73,14 +71,14 @@ const Header = (navigation, title) => {
     title,
     headerLeft: null,
     headerStyle: {
-      backgroundColor: BLUE,
+      backgroundColor: BLUE
     },
-    headerTintColor: '#ffffff',
+    headerTintColor: 'white',
     headerTitleStyle: {
       fontWeight: 'bold',
-      width: WIDTH - 75,
+      width: WIDTH - 75
     },
-    headerRight: () => CustomMenu(navigation),
+    headerRight: () => CustomMenu(navigation)
   }
 }
 

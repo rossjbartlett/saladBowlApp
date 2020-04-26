@@ -6,7 +6,7 @@ const Screens = Object.freeze({
   GUESSING: 'GUESSING',
   FINISHED_BOWL: 'FINISHED_BOWL',
   FINSIHED_LAST_BOWL: 'FINSIHED_LAST_BOWL',
-  GAME_OVER: 'GAME_OVER',
+  GAME_OVER: 'GAME_OVER'
 })
 
 export default Screens

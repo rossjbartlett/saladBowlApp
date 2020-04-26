@@ -2,38 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import CountdownCircle from 'react-native-countdown-circle'
 import { connect, useDispatch } from 'react-redux'
-import { changeTeam, incrementScore } from './data'
-import Screens from './Screens'
-import FadeIn from './FadeIn'
-import Card from './Card'
+import { changeTeam, incrementScore } from '../data'
+import Screens from '../screens'
+import FadeIn from '../components/FadeIn'
+import Card from '../components/Card'
+import commonStyles from '../styles'
 
 const RED = '#e50000'
 const DEFAULT_GRAY = '#999'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: '5%',
-    marginBottom: '5%',
-  },
-  text: {
-    fontSize: 24,
+  bold: {
+    fontWeight: 'bold'
   },
   bottomButton: {
     flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: '5%',
-    width: 200,
+    justifyContent: 'flex-end'
   },
   marginTop: {
-    marginTop: '5%',
+    marginTop: '5%'
   },
   marginTop2: {
-    marginTop: '2%',
+    marginTop: '2%'
   },
   red: {
-    color: RED,
+    color: RED
   }
 })
 
@@ -80,8 +73,8 @@ const Guessing = (props) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Cards Left: {localCardsInBowl.length}</Text>
+    <View style={commonStyles.container}>
+      <Text style={[commonStyles.text, commonStyles.bold]}>Cards Left: {localCardsInBowl.length}</Text>
       <View style={styles.marginTop}>
         <CountdownCircle
           seconds={seconds}
@@ -95,13 +88,13 @@ const Guessing = (props) => {
       </View>
       <View style={styles.marginTop2} >
         {timeUp && (
-          <Text style={[styles.text, styles.red]}>Time's Up!</Text>
+          <Text style={[commonStyles.text, styles.red, commonStyles.bold]}>Time&apos;s Up!</Text>
         )}
       </View>
 
       <Card text={chosenCard} />
 
-      <View style={styles.bottomButton}>
+      <View style={[commonStyles.buttonContainer, styles.bottomButton]}>
         {!timeUp && (
           <Button
             title='Got it!'

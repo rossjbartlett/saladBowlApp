@@ -1,9 +1,6 @@
 TODO
 
-* implement tiebreaker round
-* refactor all js files into src, have seperate containers (screens?)/components dir
 * use redux-toolkit to simplify redcucer
-* move styles to a seperate file?
 * customize the rounds (menu after writing team names: can add/remove rounds, config round timer)
 * make the header be the currentTeamColor
 * disable back button/swipe
