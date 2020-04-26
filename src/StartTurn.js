@@ -1,47 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import { Button, View, Text, Vibration } from 'react-native'
 import SaladImg from './SaladImg'
-import Screens from './Screens'
+import Screens from './screens'
 import Scoreboard from './Scoreboard'
 import RoundInfo from './RoundInfo'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '5%',
-    marginBottom: '5%'
-  },
-  text: {
-    fontSize: 24
-  },
-  bold: {
-    fontWeight: 'bold'
-  },
-  button: {
-    flex: 3,
-    marginTop: '5%',
-    width: 200
-  }
-})
+import commonStyles from './styles'
 
 const StartTurn = (props) => {
   const cardsInBowl = props.navigation.getParam('cardsInBowl', [])
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
       <Scoreboard />
       <RoundInfo />
       <Text>
         Pass the device to the next
-        <Text style={[styles.bold, { color: props.currentTeamColor }]}> {props.currentTeam} </Text>
+        <Text style={[commonStyles.bold, { color: props.currentTeamColor }]}> {props.currentTeam} </Text>
         player.
       </Text>
       <SaladImg />
-      <Text style={styles.text}>Cards in Bowl: {cardsInBowl.length}</Text>
-      <View style={styles.button}>
+      <Text style={commonStyles.text}>Cards in Bowl: {cardsInBowl.length}</Text>
+      <View style={[{ flex: 3 }, commonStyles.buttonContainer]}>
         <Button
           title='Start Turn'
           color={props.currentTeamColor}

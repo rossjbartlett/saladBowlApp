@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux'
 import { createGame, reset } from './data'
 import { TEAM_COLORS, BLUE } from './constants'
 import SaladImg from './SaladImg'
-import Screens from './Screens'
+import Screens from './screens'
+import commonStyles from './styles'
 
 const _textInput = {
   bottom: 60,
@@ -14,14 +15,7 @@ const _textInput = {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '5%',
-    marginBottom: '5%'
-  },
-  button: {
+  spacedButton: {
     flex: 5,
     marginTop: '10%',
     width: 200
@@ -47,11 +41,11 @@ const Home = (props) => {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
       <SaladImg />
-      <View>
+      <View style={{ marginTop: '10%' }}>
         <TextInput
-          selectionColor={TEAM_COLORS[0]} // TODO Not working?
+          selectionColor={TEAM_COLORS[0]} // TODO cursor color Not working?
           style={styles.textInput0}
           underlineColorAndroid={TEAM_COLORS[0]}
           placeholder='Team 1 Name'
@@ -59,7 +53,7 @@ const Home = (props) => {
           value={team1}
         />
         <TextInput
-          selectionColor={TEAM_COLORS[1]} // TODO Not working?
+          selectionColor={TEAM_COLORS[1]} // TODO cursor color Not working?
           style={styles.textInput1}
           underlineColorAndroid={TEAM_COLORS[1]}
           placeholder='Team 2 Name'
@@ -67,7 +61,7 @@ const Home = (props) => {
           value={team2}
         />
       </View>
-      <View style={styles.button}>
+      <View style={styles.spacedButton}>
         <Button
           title='New Game'
           disabled={!teamsValid}

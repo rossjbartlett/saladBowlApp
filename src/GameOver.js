@@ -2,28 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, View, Text, StyleSheet } from 'react-native'
 import { BLUE } from './constants'
-import Screens from './Screens'
-import clearAndGo from './ClearAndGo'
+import Screens from './screens'
+import clearAndGo from './clearAndGo'
 import SaladImg from './SaladImg'
 import Scoreboard from './Scoreboard'
+import commonStyles from './styles'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: '5%',
-    marginBottom: '5%',
-    justifyContent: 'center'
-  },
-  med: {
-    fontSize: 24
-  },
   big: {
     fontSize: 32
-  },
-  button: {
-    marginTop: '5%',
-    width: 200
   }
 })
 
@@ -35,14 +22,14 @@ const GameOver = ({ score, teamColors, navigation }) => {
   const winningTeamColor = teamColors[winningTeam]
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
 
       <Scoreboard />
-      <Text style={[styles.bold, styles.big]}>
+      <Text style={[commonStyles.bold, styles.big]}>
         {tied ? (
           "It's a tie!"
         ) : (
-          <Text style={[styles.bold, styles.big]}>
+          <Text style={[commonStyles.bold, styles.big]}>
               Team
             <Text style={{ color: winningTeamColor }}> {winningTeam} </Text>
             wins!
@@ -52,9 +39,9 @@ const GameOver = ({ score, teamColors, navigation }) => {
 
       <SaladImg />
 
-      <Text style={styles.med}>Game Over</Text>
+      <Text style={commonStyles.text}>Game Over</Text>
       {/* TOOD show all the cards, scrolling like movie credits */}
-      <View style={styles.button}>
+      <View style={commonStyles.buttonContainer}>
         <Button
           title='New Game'
           color={BLUE}

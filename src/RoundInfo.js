@@ -1,13 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet } from 'react-native'
-
-const styles = StyleSheet.create({
-  boldCentered: {
-    fontWeight: 'bold',
-    textAlign: 'center'
-  }
-})
+import { View, Text } from 'react-native'
+import commonStyles from './styles'
 
 const RoundInfo = (props) => {
   const next = props.showNextRound
@@ -18,7 +12,7 @@ const RoundInfo = (props) => {
 
   return (
     <View style={{ marginBottom: '5%' }}>
-      <Text style={[styles.boldCentered, { fontSize: 18 }]}>
+      <Text style={[commonStyles.boldCentered, { fontSize: 18 }]}>
         {roundText}
       </Text>
     </View>

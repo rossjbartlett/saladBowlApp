@@ -4,25 +4,11 @@ import DialogInput from 'react-native-dialog-input'
 import { useDispatch } from 'react-redux'
 import { setCards } from './data'
 import { BLUE } from './constants'
-import Screens from './Screens'
+import Screens from './screens'
 import SaladImg from './SaladImg'
+import commonStyles from './styles'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '5%',
-    marginBottom: '5%'
-  },
-  text: {
-    fontSize: 24
-  },
-  button: {
-    flex: 3,
-    marginTop: '5%',
-    width: 200
-  },
   bottom: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -32,12 +18,10 @@ const styles = StyleSheet.create({
 
 const WriteCards = (props) => {
   const [showPopup, setShowPopup] = React.useState(false)
-  // const [input, setInput] = React.useState('')
   const [localCards, setLocalCards] = React.useState([])
   const dispatch = useDispatch()
 
   const handleCancel = () => {
-    // setInput('')
     setShowPopup(false)
   }
 
@@ -46,17 +30,16 @@ const WriteCards = (props) => {
       const newCards = localCards.concat([input])
       setLocalCards(newCards)
     }
-    // setInput('')
     setShowPopup(false)
   }
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
       <SaladImg />
       <View style={{ flex: 3 }}>
-        <Text style={styles.text}>Cards in Bowl: {localCards.length}</Text>
+        <Text style={commonStyles.text}>Cards in Bowl: {localCards.length}</Text>
       </View>
-      <View style={styles.button}>
+      <View style={[{ flex: 3 }, commonStyles.buttonContainer]}>
         <Button
           title='Add Card'
           color={BLUE}

@@ -1,42 +1,22 @@
 import React from 'react'
-import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
+import { Button, View, Text, Vibration } from 'react-native'
 import { BLUE } from './constants'
-import Screens from './Screens'
+import Screens from './screens'
 import SaladImg from './SaladImg'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: '5%',
-    marginBottom: '5%',
-    justifyContent: 'center'
-  },
-  textSize: {
-    fontSize: 24
-  },
-  boldCentered: {
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  button: {
-    marginTop: '5%',
-    width: 200
-  }
-})
+import commonStyles from './styles'
 
 const FinishedLastBowl = (props) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.textSize}>You finished the bowl!</Text>
+    <View style={commonStyles.container}>
+      <Text style={commonStyles.text}>You finished the bowl!</Text>
 
       <SaladImg />
 
-      <Text style={[styles.boldCentered, styles.textSize]}>
+      <Text style={[commonStyles.boldCentered, commonStyles.text]}>
         The Final Score is...
       </Text>
 
-      <View style={styles.button}>
+      <View style={commonStyles.buttonContainer}>
         <Button
           title='View Results'
           color={BLUE}

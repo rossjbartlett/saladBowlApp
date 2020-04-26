@@ -8,9 +8,9 @@ import {
   MenuTrigger
 } from 'react-native-popup-menu'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import clearAndGo from './ClearAndGo'
+import clearAndGo from './clearAndGo'
 import { BLUE } from './constants'
-import Screens from './Screens'
+import Screens from './screens'
 
 const ICON_SIZE = 24
 
@@ -73,7 +73,7 @@ const Header = (navigation, title) => {
     headerStyle: {
       backgroundColor: BLUE
     },
-    headerTintColor: '#ffffff',
+    headerTintColor: 'white',
     headerTitleStyle: {
       fontWeight: 'bold',
       width: WIDTH - 75
