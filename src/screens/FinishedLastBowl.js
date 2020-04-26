@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, View, Text, Vibration } from 'react-native'
-import { BLUE } from './constants'
-import Screens from './screens'
-import SaladImg from './SaladImg'
-import commonStyles from './styles'
+import { BLUE } from '../constants'
+import Screens from '../screens'
+import SaladImg from '../components/SaladImg'
+import commonStyles from '../styles'
 
 const FinishedLastBowl = (props) => {
   return (

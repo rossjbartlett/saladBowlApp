@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, View, Text, Vibration } from 'react-native'
-import SaladImg from './SaladImg'
-import Screens from './screens'
-import Scoreboard from './Scoreboard'
-import RoundInfo from './RoundInfo'
-import commonStyles from './styles'
+import SaladImg from '../components/SaladImg'
+import Screens from '../screens'
+import Scoreboard from '../components/Scoreboard'
+import RoundInfo from '../components/RoundInfo'
+import commonStyles from '../styles'
 
 const StartTurn = (props) => {
   const cardsInBowl = props.navigation.getParam('cardsInBowl', [])

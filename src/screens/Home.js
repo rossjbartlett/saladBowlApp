@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Button, View, StyleSheet, TextInput } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { createGame, reset } from './data'
-import { TEAM_COLORS, BLUE } from './constants'
-import SaladImg from './SaladImg'
-import Screens from './screens'
-import commonStyles from './styles'
+import { createGame, reset } from '../data'
+import { TEAM_COLORS, BLUE } from '../constants'
+import SaladImg from '../components/SaladImg'
+import Screens from '../screens'
+import commonStyles from '../styles'
 
 const _textInput = {
   bottom: 60,
@@ -17,7 +17,7 @@ const _textInput = {
 const styles = StyleSheet.create({
   spacedButton: {
     flex: 5,
-    marginTop: '10%',
+    marginTop: 10,
     width: 200
   },
   textInput0: {

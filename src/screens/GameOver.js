@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, View, Text, StyleSheet } from 'react-native'
-import { BLUE } from './constants'
-import Screens from './screens'
-import clearAndGo from './clearAndGo'
-import SaladImg from './SaladImg'
-import Scoreboard from './Scoreboard'
-import commonStyles from './styles'
+import { BLUE } from '../constants'
+import Screens from '../screens'
+import clearAndGo from '../clearAndGo'
+import SaladImg from '../components/SaladImg'
+import Scoreboard from '../components/Scoreboard'
+import commonStyles from '../styles'
 
 const styles = StyleSheet.create({
   big: {
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 })
 
 const GameOver = ({ score, teamColors, navigation }) => {
-  // const dispatch = useDispatch()
   const scores = Object.values(score)
   const tied = scores[0] === scores[1]
   const winningTeam = tied ? null : Object.keys(score).reduce((t1, t2) => score[t1] > score[t2] ? t1 : t2)
@@ -40,7 +39,7 @@ const GameOver = ({ score, teamColors, navigation }) => {
       <SaladImg />
 
       <Text style={commonStyles.text}>Game Over</Text>
-      {/* TOOD show all the cards, scrolling like movie credits */}
+      {/* TODO show all the cards, scrolling like movie credits */}
       <View style={commonStyles.buttonContainer}>
         <Button
           title='New Game'

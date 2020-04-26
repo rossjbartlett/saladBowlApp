@@ -2,11 +2,11 @@ import React from 'react'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import DialogInput from 'react-native-dialog-input'
 import { useDispatch } from 'react-redux'
-import { setCards } from './data'
-import { BLUE } from './constants'
-import Screens from './screens'
-import SaladImg from './SaladImg'
-import commonStyles from './styles'
+import { setCards } from '../data'
+import { BLUE } from '../constants'
+import Screens from '../screens'
+import SaladImg from '../components/SaladImg'
+import commonStyles from '../styles'
 
 const styles = StyleSheet.create({
   bottom: {

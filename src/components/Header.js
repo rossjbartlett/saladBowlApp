@@ -8,9 +8,9 @@ import {
   MenuTrigger
 } from 'react-native-popup-menu'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import clearAndGo from './clearAndGo'
-import { BLUE } from './constants'
-import Screens from './screens'
+import clearAndGo from '../clearAndGo'
+import { BLUE } from '../constants'
+import Screens from '../screens'
 
 const ICON_SIZE = 24
 

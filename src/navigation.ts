@@ -1,16 +1,17 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import Screens from './screens'
-import Home from './Home'
-import WriteCards from './WriteCards'
-import StartTurn from './StartTurn'
-import Guessing from './Guessing'
-import FinishedBowl from './FinishedBowl'
-import FinishedLastBowl from './FinishedLastBowl'
-import GameOver from './GameOver'
-import Header from './Header'
+import Home from './screens/Home'
+import WriteCards from './screens/WriteCards'
+import StartTurn from './screens/StartTurn'
+import Guessing from './screens/Guessing'
+import FinishedBowl from './screens/FinishedBowl'
+import FinishedLastBowl from './screens/FinishedLastBowl'
+import GameOver from './screens/GameOver'
+import Header from './components/Header'
 
-const nav = title => ({ navigation }) => Header(navigation, title)
+// navigationOptions
+const nav = title => ({ navigation }) => ({...Header(navigation, title), gesturesEnabled: false})
 
 const AppNavigator = createStackNavigator(
   {

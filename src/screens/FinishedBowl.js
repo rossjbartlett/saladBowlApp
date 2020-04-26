@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
 import { Button, View, Text, Vibration } from 'react-native'
-import { changeTeam, incrementRound } from './data'
-import { BLUE } from './constants'
-import Screens from './screens'
-import SaladImg from './SaladImg'
-import Scoreboard from './Scoreboard'
-import RoundInfo from './RoundInfo'
-import commonStyles from './styles'
+import { changeTeam, incrementRound } from '../data'
+import { BLUE } from '../constants'
+import Screens from '../screens'
+import SaladImg from '../components/SaladImg'
+import Scoreboard from '../components/Scoreboard'
+import RoundInfo from '../components/RoundInfo'
+import commonStyles from '../styles'
 
 const FinishedBowl = (props) => {
   const dispatch = useDispatch()

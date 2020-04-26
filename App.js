@@ -1,7 +1,6 @@
 import React from 'react'
 import store from './src/data'
 import { Provider } from 'react-redux'
-
 import { MenuProvider } from 'react-native-popup-menu'
 import AppContainer from './src/navigation'
 

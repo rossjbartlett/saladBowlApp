@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
-import commonStyles from './styles'
+import commonStyles from '../styles'
 
 const Scoreboard = (props) => {
   const [t1, t2] = props.teams

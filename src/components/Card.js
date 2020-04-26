@@ -34,18 +34,12 @@ const Card = ({ text }) => {
   return (
     <View style={styles.cardContainer}>
       <ImageBackground
-        source={require('../assets/postit.png')}
+        source={require('../../assets/postit.png')}
         resizeMode='contain'
         style={styles.img}
       >
-        <View
-          style={styles.textContainer}
-        >
-          <Text
-            style={styles.cardText}
-          >
-            {text}
-          </Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.cardText}>{text}</Text>
         </View>
       </ImageBackground>
     </View>
