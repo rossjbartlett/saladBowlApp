@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, View, Text, StyleSheet, Vibration } from 'react-native'
 import CountdownCircle from 'react-native-countdown-circle'
 import { connect, useDispatch } from 'react-redux'
+import { Audio } from 'expo-av'
 import { changeTeam, incrementScore } from '../data'
 import Screens from '../screens'
 import FadeIn from '../components/FadeIn'
@@ -31,6 +32,9 @@ const styles = StyleSheet.create({
 })
 
 const Guessing = (props) => {
+  const alarm = new Audio.Sound()
+  alarm.loadAsync(require('../../assets/radar.mp3'))
+
   const seconds = 5 // TODO 60, make this configurable
   const propCardsInBowl = props.navigation.getParam('cardsInBowl', [])
   const [localCardsInBowl, setLocalCardsInBowl] = useState(propCardsInBowl)
@@ -68,6 +72,7 @@ const Guessing = (props) => {
 
   const handleTimeUp = () => {
     // TODO alarm sound
+    alarm.playAsync()
     Vibration.vibrate([300, 300, 300])
     setTimeUp(true)
   }

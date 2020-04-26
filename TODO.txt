@@ -4,5 +4,4 @@ TODO
 * customize the rounds (menu after writing team names: can add/remove rounds, config round timer)
 * make the header be the currentTeamColor
 * disable back button/swipe
-* sounds on timer
 * disable clickaway on WriteCards
