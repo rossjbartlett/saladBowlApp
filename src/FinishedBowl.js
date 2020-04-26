@@ -14,15 +14,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: '5%',
     marginBottom: '5%',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   text: {
-    fontSize: 24,
+    fontSize: 24
   },
   button: {
     marginTop: '5%',
     width: 200
-  },
+  }
 })
 
 const FinishedBowl = (props) => {

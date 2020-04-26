@@ -13,18 +13,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: '5%',
     marginBottom: '5%',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   med: {
-    fontSize: 24,
+    fontSize: 24
   },
   big: {
-    fontSize: 32,
+    fontSize: 32
   },
   button: {
     marginTop: '5%',
     width: 200
-  },
+  }
 })
 
 const GameOver = ({ score, teamColors, navigation }) => {
@@ -42,12 +42,12 @@ const GameOver = ({ score, teamColors, navigation }) => {
         {tied ? (
           "It's a tie!"
         ) : (
-            <Text style={[styles.bold, styles.big]}>
+          <Text style={[styles.bold, styles.big]}>
               Team
-              <Text style={{ color: winningTeamColor }}> {winningTeam} </Text>
+            <Text style={{ color: winningTeamColor }}> {winningTeam} </Text>
             wins!
-            </Text>
-          )}
+          </Text>
+        )}
       </Text>
 
       <SaladImg />

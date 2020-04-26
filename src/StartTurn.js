@@ -12,19 +12,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '5%',
-    marginBottom: '5%',
+    marginBottom: '5%'
   },
   text: {
-    fontSize: 24,
+    fontSize: 24
   },
   bold: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   button: {
     flex: 3,
     marginTop: '5%',
-    width: 200,
-  },
+    width: 200
+  }
 })
 
 const StartTurn = (props) => {

@@ -13,21 +13,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '5%',
-    marginBottom: '5%',
+    marginBottom: '5%'
   },
   text: {
-    fontSize: 24,
+    fontSize: 24
   },
   button: {
     flex: 3,
     marginTop: '5%',
-    width: 200,
+    width: 200
   },
   bottom: {
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: '10%'
-  },
+  }
 })
 
 const WriteCards = (props) => {

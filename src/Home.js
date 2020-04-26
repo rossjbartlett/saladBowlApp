@@ -10,7 +10,7 @@ const _textInput = {
   bottom: 60,
   height: 60,
   marginBottom: 0,
-  width: 300,
+  width: 300
 }
 
 const styles = StyleSheet.create({
@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '5%',
-    marginBottom: '5%',
+    marginBottom: '5%'
   },
   button: {
     flex: 5,
     marginTop: '10%',
-    width: 200,
+    width: 200
   },
   textInput0: {
     ..._textInput,

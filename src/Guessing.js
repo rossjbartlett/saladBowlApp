@@ -15,25 +15,28 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: '5%',
-    marginBottom: '5%',
+    marginBottom: '5%'
   },
   text: {
-    fontSize: 24,
+    fontSize: 24
+  },
+  bold: {
+    fontWeight: 'bold'
   },
   bottomButton: {
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: '5%',
-    width: 200,
+    width: 200
   },
   marginTop: {
-    marginTop: '5%',
+    marginTop: '5%'
   },
   marginTop2: {
-    marginTop: '2%',
+    marginTop: '2%'
   },
   red: {
-    color: RED,
+    color: RED
   }
 })
 
@@ -81,7 +84,7 @@ const Guessing = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Cards Left: {localCardsInBowl.length}</Text>
+      <Text style={[styles.text, styles.bold]}>Cards Left: {localCardsInBowl.length}</Text>
       <View style={styles.marginTop}>
         <CountdownCircle
           seconds={seconds}
@@ -95,7 +98,7 @@ const Guessing = (props) => {
       </View>
       <View style={styles.marginTop2} >
         {timeUp && (
-          <Text style={[styles.text, styles.red]}>Time's Up!</Text>
+        <Text style={[styles.text, styles.red, styles.bold]}>Time's Up!</Text>
         )}
       </View>
 

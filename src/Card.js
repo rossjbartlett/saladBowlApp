@@ -16,7 +16,7 @@ const Card = ({ text }) => {
         resizeMode='contain'
         style={{
           height: '220%',
-          marginLeft: 30,
+          marginLeft: 30
         }}
       >
         <View
@@ -27,7 +27,7 @@ const Card = ({ text }) => {
             top: '100%',
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: 0
           }}
         >
           <Text
@@ -35,7 +35,7 @@ const Card = ({ text }) => {
               flexWrap: 'wrap',
               fontWeight: 'bold',
               fontSize: 28,
-              width: '55%',
+              width: '55%'
             }}
           // TODO put a random tilt
           >

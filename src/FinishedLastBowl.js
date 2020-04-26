@@ -10,19 +10,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: '5%',
     marginBottom: '5%',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textSize: {
-    fontSize: 24,
+    fontSize: 24
   },
   boldCentered: {
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   button: {
     marginTop: '5%',
     width: 200
-  },
+  }
 })
 
 const FinishedLastBowl = (props) => {

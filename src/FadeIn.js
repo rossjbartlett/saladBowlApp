@@ -10,7 +10,7 @@ const FadeIn = (props) => {
       {
         toValue: 1,
         duration: props.duration || 3000,
-        delay: props.delay || 0,
+        delay: props.delay || 0
       }
     ).start()
   }, [])
@@ -19,7 +19,7 @@ const FadeIn = (props) => {
     <Animated.View // Special animatable View
       style={{
         ...props.style,
-        opacity: fadeAnim, // Bind opacity to animated value
+        opacity: fadeAnim // Bind opacity to animated value
       }}
     >
       {props.children}
