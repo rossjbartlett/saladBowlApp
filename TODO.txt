@@ -1,7 +1,7 @@
 TODO
 
 * use redux-toolkit to simplify redcucer
-* customize the rounds (menu after writing team names: can add/remove rounds, config round timer)
+* customize the rounds (menu after writing team names: can add/remove rounds)
 * make the header be the currentTeamColor
 * disable back button/swipe
 * disable clickaway on WriteCards

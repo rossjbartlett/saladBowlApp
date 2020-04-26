@@ -1,8 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { createStore } from 'redux'
-import { TEAM_COLORS } from './constants'
-
-const DEFAULT_ROUNDS = ['Taboo', 'Charades', 'One Word Association']
+import { TEAM_COLORS, DEFAULT_ROUNDS, DEFAULT_ROUND_LENGTH } from './constants'
 
 const INIT_STATE = {
   cards: [],
@@ -12,6 +10,7 @@ const INIT_STATE = {
   teamColors: {},
   score: {},
   rounds: DEFAULT_ROUNDS,
+  roundLength: DEFAULT_ROUND_LENGTH,
   currentRound: 0
 }
 
@@ -60,10 +59,10 @@ export const changeTeam = () => {
   }
 }
 
-export const createGame = (teams) => {
+export const createGame = (teams, roundLength) => {
   return {
     type: CREATE_GAME,
-    payload: teams
+    payload: { teams, roundLength }
   }
 }
 
@@ -96,15 +95,17 @@ export const rootReducer = (state = INIT_STATE, action) => {
         currentTeamColor: state.teamColors[newTeam]
       }
     case CREATE_GAME:
-      const [t1, t2] = action.payload
+      const teams = action.payload.teams
+      const [t1, t2] = teams
       const [c1, c2] = TEAM_COLORS
       return {
         ...state,
-        teams: action.payload,
+        teams,
         currentTeam: t1,
         currentTeamColor: c1,
         teamColors: { [t1]: c1, [t2]: c2 },
-        score: { [t1]: 0, [t2]: 0 }
+        score: { [t1]: 0, [t2]: 0 },
+        roundLength: action.payload.roundLength
       }
     default:
       return state

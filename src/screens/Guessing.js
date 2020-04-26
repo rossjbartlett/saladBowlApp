@@ -35,7 +35,6 @@ const Guessing = (props) => {
   const alarm = new Audio.Sound()
   alarm.loadAsync(require('../../assets/radar.mp3'))
 
-  const seconds = 5 // TODO 60, make this configurable
   const propCardsInBowl = props.navigation.getParam('cardsInBowl', [])
   const [localCardsInBowl, setLocalCardsInBowl] = useState(propCardsInBowl)
   const [chosenCardIndex, setchosenCardIndex] = useState()
@@ -82,7 +81,7 @@ const Guessing = (props) => {
       <Text style={[commonStyles.text, commonStyles.bold]}>Cards Left: {localCardsInBowl.length}</Text>
       <View style={styles.marginTop}>
         <CountdownCircle
-          seconds={seconds}
+          seconds={props.roundLength}
           radius={100}
           borderWidth={6}
           color={timeUp ? DEFAULT_GRAY : teamColor}
@@ -129,8 +128,8 @@ const Guessing = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  const { currentTeamColor, currentRound, rounds } = state
-  return { currentTeamColor, currentRound, rounds }
+  const { currentTeamColor, currentRound, rounds, roundLength } = state
+  return { currentTeamColor, currentRound, rounds, roundLength }
 }
 
 export default connect(mapStateToProps)(Guessing)
