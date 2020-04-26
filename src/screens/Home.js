@@ -72,7 +72,7 @@ const Home = (props) => {
           selectionColor={TEAM_COLORS[0]} // TODO cursor color Not working?
           style={styles.textInput0}
           underlineColorAndroid={TEAM_COLORS[0]}
-          placeholder="Team 1 Name"
+          placeholder='Team 1 Name'
           onChangeText={(text) => setTeam1(text)}
           value={team1}
         />
@@ -80,7 +80,7 @@ const Home = (props) => {
           selectionColor={TEAM_COLORS[1]} // TODO cursor color Not working?
           style={styles.textInput1}
           underlineColorAndroid={TEAM_COLORS[1]}
-          placeholder="Team 2 Name"
+          placeholder='Team 2 Name'
           onChangeText={(text) => setTeam2(text)}
           value={team2}
         />
@@ -106,7 +106,7 @@ const Home = (props) => {
       </View>
       <View style={styles.spacedButton}>
         <Button
-          title="New Game"
+          title='New Game'
           disabled={!teamsValid}
           color={BLUE}
           onPress={() => {
